@@ -1,0 +1,357 @@
+---
+import "@fontsource/manrope/latin-400.css";
+import "@fontsource/manrope/latin-500.css";
+import "@fontsource/manrope/latin-600.css";
+import "@fontsource/cormorant-garamond/latin-500-italic.css";
+import "../styles/style.css";
+import Arrow from "../components/Arrow.astro";
+import {
+  asset,
+  href,
+  ui,
+  maps,
+  whatsapp,
+  type Lang,
+  type Page,
+} from "../data/site";
+const {
+  lang = "fr",
+  page = "home",
+  title,
+  description,
+} = Astro.props as {
+  lang: Lang;
+  page: Page;
+  title: string;
+  description: string;
+};
+const t = ui[lang];
+const pages: Page[] = ["home", "team", "services", "pricing", "location"];
+const canonical = new URL(href(lang, page), Astro.site);
+const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={preview ? "noindex, nofollow" : "index, follow"}
+    />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href={new URL(href("fr", page), Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(href("en", page), Astro.site)}
+    />
+    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta
+      property="og:image"
+      content={new URL(asset("images/og-image.jpg"), Astro.site)}
+    />
+    <meta property="og:locale" content={lang === "fr" ? "fr_CH" : "en_GB"} />
+    {!preview && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalClinic",
+          name: "PhysioVerbier",
+          url: "https://physio-verbier.com",
+          telephone: "+41275650660",
+          email: "info@physio-verbier.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Route de Verbier Station 74",
+            postalCode: "1936",
+            addressLocality: "Verbier",
+            addressCountry: "CH",
+          },
+        })}
+      ></script>
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {t.skip}
+    </a>
+    {preview && (
+      <div class="preview-note">
+        <span>{t.preview}</span>
+        <span>{t.previewMore} · PhysioVerbier</span>
+      </div>
+    )}
+    <!-- === NAVIGATION PARTAGÉE === -->
+    <header class="site-header">
+      <a
+        href={href(lang, "home")}
+        class="brand"
+        aria-label={`PhysioVerbier · ${t.nav[0]}`}
+      >
+        <img
+          src={asset("images/logo.png")}
+          alt="PhysioVerbier"
+          width="250"
+          height="100"
+        />
+      </a>
+      <nav
+        class="desktop-nav"
+        aria-label={lang === "fr" ? "Navigation principale" : "Main navigation"}
+      >
+        {pages.map((p, i) => (
+          <a
+            href={href(lang, p)}
+            aria-current={page === p ? "page" : undefined}
+          >
+            {t.nav[i]}
+          </a>
+        ))}
+      </nav>
+      <div class="header-actions">
+        <a
+          class="language"
+          href={href(lang === "fr" ? "en" : "fr", page)}
+          lang={lang === "fr" ? "en" : "fr"}
+          aria-label={
+            lang === "fr" ? "Switch to English" : "Passer en français"
+          }
+        >
+          {lang === "fr" ? "EN" : "FR"}
+        </a>
+        <a
+          class="button button--small header-book"
+          href={href(lang, "contact")}
+        >
+          {t.book}
+          <Arrow diagonal />
+        </a>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-navigation"
+          data-open={t.menu}
+          data-close={t.close}
+        >
+          <span>{t.menu}</span>
+          <span class="menu-lines" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav
+        id="mobile-navigation"
+        class="mobile-nav"
+        hidden
+        aria-label={lang === "fr" ? "Navigation mobile" : "Mobile navigation"}
+      >
+        {pages.map((p, i) => (
+          <a
+            href={href(lang, p)}
+            aria-current={page === p ? "page" : undefined}
+          >
+            <span class="nav-index">0{i + 1}</span>
+            {t.nav[i]}
+            <Arrow />
+          </a>
+        ))}
+        <a class="mobile-contact" href={href(lang, "contact")}>
+          {t.book}
+          <Arrow diagonal />
+        </a>
+      </nav>
+    </header>
+    <noscript>
+      <nav
+        class="nojs-nav container"
+        aria-label={lang === "fr" ? "Navigation" : "Navigation"}
+      >
+        {pages.map((p, i) => (
+          <a href={href(lang, p)}>{t.nav[i]}</a>
+        ))}
+        <a href={href(lang, "contact")}>{t.book}</a>
+      </nav>
+    </noscript>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <!-- === INVITATION ET PIED DE PAGE === -->
+    {page !== "contact" && page !== "privacy" && (
+      <section class="closing-cta">
+        <div class="container">
+          <p class="eyebrow">{t.openYear}</p>
+          <h2>
+            {t.together}
+            <br />
+            <em>{t.mountains}</em>
+          </h2>
+          <a class="button button--cream" href={href(lang, "contact")}>
+            {t.book}
+            <Arrow diagonal />
+          </a>
+          <svg
+            class="mountain-line"
+            viewBox="0 0 600 240"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0 220 95 140 133 171 241 23 331 157 383 94 600 240M194 88l48 11 26-38M340 145l44 4 17-34"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+          </svg>
+        </div>
+      </section>
+    )}
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href={href(lang, "home")}>
+            <img
+              src={asset("images/photo-06.svg")}
+              alt="PhysioVerbier"
+              width="250"
+              height="120"
+            />
+          </a>
+          <p>{t.disciplines.join(" · ")}</p>
+          <div class="social-links">
+            <a
+              href="https://www.instagram.com/physioverbier/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+              <Arrow diagonal />
+            </a>
+            <a
+              href="https://www.facebook.com/physioverbier/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+              <Arrow diagonal />
+            </a>
+          </div>
+        </div>
+        <div>
+          <h2>{t.address}</h2>
+          <a
+            class="address-link"
+            href={maps}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t.route}
+            <br />
+            {t.town}
+            <Arrow diagonal />
+          </a>
+          <a href="tel:+41275650660">+41 (0)27 565 06 60</a>
+          <a href="mailto:info@physio-verbier.com">info@physio-verbier.com</a>
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+            WhatsApp · +41 (0)76 236 09 88
+          </a>
+        </div>
+        <div>
+          <h2>{t.appointments}</h2>
+          <p>{t.appointmentHours}</p>
+          <h2>{t.reception}</h2>
+          <p>
+            {t.phoneHours}
+            <br />
+            {t.phoneHours2}
+          </p>
+          <p>{t.daily}</p>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© {new Date().getFullYear()} PhysioVerbier</span>
+        <a href={href(lang, "privacy")}>
+          {t.legal} & {t.privacy.toLowerCase()}
+        </a>
+        <span>
+          {t.credit} ·{" "}
+          <a
+            href="https://www.ruosscommunication.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ruoss!
+          </a>
+        </span>
+      </div>
+    </footer>
+    <script>
+      // Menu mobile : fermeture clavier, clic extérieur et passage au grand écran.
+      const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+      const menu = document.querySelector<HTMLElement>("#mobile-navigation");
+      const setMenu = (open: boolean) => {
+        if (!toggle || !menu) return;
+        toggle.setAttribute("aria-expanded", String(open));
+        menu.hidden = !open;
+        toggle.querySelector("span")!.textContent =
+          (open ? toggle.dataset.close : toggle.dataset.open) || "Menu";
+      };
+      toggle?.addEventListener("click", () =>
+        setMenu(toggle.getAttribute("aria-expanded") !== "true"),
+      );
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          toggle?.getAttribute("aria-expanded") === "true"
+        ) {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+      document.addEventListener("click", (e) => {
+        if (!(e.target as Element).closest(".site-header")) setMenu(false);
+      });
+      window
+        .matchMedia("(min-width: 1100px)")
+        .addEventListener("change", () => setMenu(false));
+      // Le contenu reste visible sans JavaScript et sans animation.
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const observer = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            }),
+          { threshold: 0.08 },
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => {
+          el.classList.add("will-reveal");
+          observer.observe(el);
+        });
+      }
+      // Prototype uniquement : aucune requête, aucun stockage, aucune confirmation trompeuse.
+      const form = document.querySelector<HTMLFormElement>("[data-demo-form]");
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const status = document.querySelector<HTMLElement>("#form-status");
+        if (status) {
+          status.hidden = false;
+          status.focus();
+        }
+        form.reset();
+      });
+    </script>
+  </body>
+</html>

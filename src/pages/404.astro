@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { href } from "../data/site";
+---
+
+<Layout
+  lang="fr"
+  page="home"
+  title="Page introuvable | PhysioVerbier"
+  description="Retrouvez le chemin vers PhysioVerbier."
+>
+  <section class="container not-found">
+    <p class="eyebrow">404 / PhysioVerbier</p>
+    <h1>
+      Un petit détour.
+      <br />
+      <em>Retrouvons notre chemin.</em>
+    </h1>
+    <a class="button" href={href("fr", "home")}>
+      Retour à l’accueil
+    </a>
+  </section>
+</Layout>

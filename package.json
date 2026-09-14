@@ -1,0 +1,21 @@
+{
+  "name": "physio-verbier",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "node scripts/check-site.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.6",
+    "@fontsource/manrope": "^5.2.6",
+    "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^1.0.0"
+  }
+}

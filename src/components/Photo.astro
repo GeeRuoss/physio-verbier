@@ -1,0 +1,25 @@
+---
+import dimensions from "../data/images.json";
+import { asset } from "../data/site";
+const {
+  id,
+  alt = "",
+  class: className = "",
+  eager = false,
+  sizes = "(min-width: 900px) 50vw, 100vw",
+} = Astro.props;
+const name = `images/photo-${String(id).padStart(2, "0")}`;
+---
+
+<img
+  class={className}
+  src={asset(`${name}-1280.webp`)}
+  srcset={`${asset(`${name}-640.webp`)} 640w, ${asset(`${name}-1280.webp`)} 1280w${id === 1 ? `, ${asset(`${name}-1920.webp`)} 1920w` : ""}`}
+  sizes={sizes}
+  alt={alt}
+  width={dimensions[String(id)].width}
+  height={dimensions[String(id)].height}
+  loading={eager ? "eager" : "lazy"}
+  decoding="async"
+  fetchpriority={eager ? "high" : "auto"}
+/>
