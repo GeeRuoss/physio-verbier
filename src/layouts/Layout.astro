@@ -89,12 +89,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
     <a class="skip-link" href="#main">
       {t.skip}
     </a>
-    {preview && (
-      <div class="preview-note">
-        <span>{t.preview}</span>
-        <span>{t.previewMore} · PhysioVerbier</span>
-      </div>
-    )}
+
     <!-- === NAVIGATION PARTAGÉE === -->
     <header class="site-header">
       <a
@@ -191,7 +186,6 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
     {page !== "contact" && page !== "privacy" && (
       <section class="closing-cta">
         <div class="container">
-          <p class="eyebrow">{t.openYear}</p>
           <h2>
             {t.together}
             <br />
@@ -229,6 +223,10 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           </a>
           <p>{t.disciplines.join(" · ")}</p>
           <div class="social-links">
+            <a href={maps} target="_blank" rel="noopener noreferrer">
+              {lang === "fr" ? "Avis Google" : "Google reviews"}
+              <Arrow diagonal />
+            </a>
             <a
               href="https://www.instagram.com/physioverbier/"
               target="_blank"
@@ -279,12 +277,15 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         </div>
       </div>
       <div class="container footer-bottom">
-        <span>© {new Date().getFullYear()} PhysioVerbier</span>
+        <span>
+          © {new Date().getFullYear()} PhysioVerbier
+          {preview ? ` · ${t.previewMore}` : ""}
+        </span>
         <a href={href(lang, "privacy")}>
           {t.legal} & {t.privacy.toLowerCase()}
         </a>
         <span>
-          {t.credit} ·{" "}
+          {" "}
           <a
             href="https://www.ruosscommunication.com"
             target="_blank"
