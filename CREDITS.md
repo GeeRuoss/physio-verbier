@@ -6,7 +6,7 @@ Photographies créditées Claudia Lamothe dans les fichiers d’origine : crédi
 
 Polices : Manrope et Cormorant Garamond, distribuées sous SIL Open Font License via Fontsource.
 
-- `photo-01-1280.webp` : https://physio-verbier.com/wp-content/uploads/2024/12/IMG_20220204_173432_615_desktop1.jpg
+- `photo-01-{640,1280,1920}.webp` : « Ski, les Attelas », © Verbier 4Vallées. https://verbier4vallees.ch/fr/medias/banque-dimages?q=ski — utilisation autorisée, accord confirmé par Guillermo le 14 septembre 2026.
 - `photo-02-1280.webp` : https://physio-verbier.com/wp-content/uploads/2024/11/physioverbier-soins-therapie-reeducation.png
 - `photo-03-1280.webp` : https://physio-verbier.com/wp-content/uploads/2026/05/IMG_0618-scaled.jpg
 - `photo-04-1280.webp` : https://physio-verbier.com/wp-content/uploads/2026/08/LOUVIE_LAC.jpg
