@@ -32,7 +32,7 @@ Les modifications de `main` déclenchent la compilation, le contrôle des liens 
 
 Le formulaire est explicitement une démonstration : aucune requête réseau, aucun stockage et aucune simulation de confirmation réelle. Il a `method="dialog"`, aucun `action` ni nom de champ sérialisable. Les liens de téléphone, email et WhatsApp permettent de joindre réellement le cabinet. Aucun envoi réel n’est effectué par les tests.
 
-Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Les polices sont servies localement.
+Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Un indicateur sessionStorage mémorise uniquement l’apparition de l’invitation WhatsApp. Les polices sont servies localement.
 
 ## Préparer Infomaniak
 

@@ -1,4 +1,6 @@
 ---
+import FindUs from "../components/FindUs.astro";
+import WhatsAppIcon from "../components/WhatsAppIcon.astro";
 import Layout from "../layouts/Layout.astro";
 import Arrow from "../components/Arrow.astro";
 import Photo from "../components/Photo.astro";
@@ -83,9 +85,8 @@ const plain = (s: string) =>
             <br />
             <em>{t.heroEm}</em>
           </h1>
-          <a class="button" href={href(lang, "contact")}>
-            {t.book}
-            <Arrow diagonal />
+          <a class="button" href={whatsapp} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon /> {lang === "fr" ? "Rendez-vous sur WhatsApp" : "Book on WhatsApp"}
           </a>
         </div>
       </section>
@@ -420,34 +421,7 @@ const plain = (s: string) =>
           <em>{t.locationEm}</em>
         </h1>
       </section>
-      <section class="location-feature container">
-        <Photo
-          id={19}
-          eager
-          alt={
-            lang === "fr"
-              ? "Vue sur Verbier et les montagnes enneigées"
-              : "View of Verbier and its snow-covered mountains"
-          }
-          sizes="(min-width: 900px) 65vw, 100vw"
-        />
-        <div class="address-panel">
-          <h2>
-            {t.route}
-            <br />
-            <em>1936 Verbier</em>
-          </h2>
-          <a
-            class="button button--cream"
-            href={maps}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t.directions}
-            <Arrow diagonal />
-          </a>
-        </div>
-      </section>
+      <FindUs lang={lang} full />
       <section class="section container location-info">
         <div>
           <h2>{t.appointments}</h2>
@@ -657,12 +631,12 @@ const plain = (s: string) =>
             </p>
             <p>
               Nous n’intégrons ici aucun outil de mesure d’audience, pixel
-              publicitaire ou cookie applicatif. Les polices et les images sont
+              publicitaire ou cookie applicatif. Un indicateur temporaire dans sessionStorage évite de répéter l’invitation WhatsApp pendant votre session ; il ne contient aucune donnée du formulaire. Les polices et les images sont
               servies avec le site.
             </p>
             <h2>Liens vers d’autres services</h2>
             <p>
-              Google Maps, WhatsApp, Instagram et Facebook ne sont chargés que
+              Apple Plans, Google Maps, Waze, WhatsApp, Instagram et Facebook ne sont chargés que
               si vous ouvrez leurs liens. Leurs propres règles de
               confidentialité s’appliquent alors. Évitez de transmettre des
               renseignements médicaux par les canaux de contact généraux.
@@ -726,11 +700,11 @@ const plain = (s: string) =>
             </p>
             <p>
               This version has no analytics tools, advertising pixels or
-              application cookies. Fonts and images are served with the website.
+              application cookies. A temporary sessionStorage flag prevents the WhatsApp invitation from repeating during your session; it contains no form data. Fonts and images are served with the website.
             </p>
             <h2>External services</h2>
             <p>
-              Google Maps, WhatsApp, Instagram and Facebook are only opened when
+              Apple Maps, Google Maps, Waze, WhatsApp, Instagram and Facebook are only opened when
               you follow their links. Their own privacy policies then apply.
               Please avoid sharing medical information through general contact
               channels.

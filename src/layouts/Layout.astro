@@ -4,6 +4,8 @@ import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
 import "@fontsource/cormorant-garamond/latin-500-italic.css";
 import "../styles/style.css";
+import WhatsAppIcon from "../components/WhatsAppIcon.astro";
+import FindUs from "../components/FindUs.astro";
 import Arrow from "../components/Arrow.astro";
 import {
   asset,
@@ -213,6 +215,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         </div>
       </section>
     )}
+    {page !== "location" && page !== "privacy" && <FindUs lang={lang} />}
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
@@ -299,7 +302,36 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         </span>
       </div>
     </footer>
+    <aside class="wa-widget" aria-label={lang === "fr" ? "Rendez-vous WhatsApp" : "WhatsApp appointments"}>
+      <div class="wa-invite" hidden>
+        <button class="wa-close" type="button" aria-label={lang === "fr" ? "Fermer l’invitation" : "Close invitation"}>×</button>
+        <p>{lang === "fr" ? "Prenez rendez-vous sur WhatsApp." : "Book your appointment on WhatsApp."}</p>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer">{lang === "fr" ? "Écrivez-nous" : "Message us"} ↗</a>
+      </div>
+      <a class="wa-float" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
+    </aside>
     <script>
+      const invite = document.querySelector<HTMLElement>(".wa-invite");
+      const seenKey = "pv-whatsapp-seen";
+      let seen = false;
+      try { seen = sessionStorage.getItem(seenKey) === "1"; } catch {}
+      const remember = () => { seen = true; try { sessionStorage.setItem(seenKey, "1"); } catch {} };
+      const dismiss = () => { if(invite) invite.hidden = true; remember(); };
+      document.querySelector(".wa-close")?.addEventListener("click", dismiss);
+      document.querySelectorAll(".wa-widget a").forEach(a => a.addEventListener("click", dismiss));
+      document.addEventListener("keydown", e => { if(e.key === "Escape" && invite && !invite.hidden) dismiss(); });
+      const offer = () => {
+        if(seen || !invite) return;
+        if(document.hidden || document.querySelector('.menu-toggle[aria-expanded="true"]') || document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) { window.setTimeout(offer, 1000); return; }
+        invite.hidden = false; remember();
+      };
+      window.setTimeout(offer, 5000);
+      document.querySelectorAll<HTMLButtonElement>(".share-location").forEach(button => button.addEventListener("click", async () => {
+        const url = new URL(button.dataset.url || "", location.origin).href;
+        try { await navigator.clipboard.writeText(url); button.textContent = button.dataset.copied || "Lien copié"; }
+        catch { const status = button.parentElement?.querySelector<HTMLElement>(".share-status"); if(status) status.textContent = url; }
+      }));
+
       // Menu mobile : fermeture clavier, clic extérieur et passage au grand écran.
       const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
       const menu = document.querySelector<HTMLElement>("#mobile-navigation");

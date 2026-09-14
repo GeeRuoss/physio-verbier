@@ -22,3 +22,7 @@ Polices : Manrope et Cormorant Garamond, distribuées sous SIL Open Font License
 - `photo-18-1280.webp` : https://physio-verbier.com/wp-content/uploads/2024/12/physioverbier%C2%A9Claudia_Lamothe-22.jpg
 - `photo-19-1280.webp` : https://physio-verbier.com/wp-content/uploads/2026/08/CLAMBIN_RAPHAELSURMONT-.jpg
 - `photo-22-1280.webp` : https://physio-verbier.com/wp-content/uploads/2026/08/IMG_0722_salle-de-traitement2-1-scaled.jpg
+
+## Plan du cabinet
+
+Carte vectorielle : données © contributeurs OpenStreetMap, ODbL 1.0, extraites via Overpass le 14 septembre 2026. Attribution visible et lien vers https://www.openstreetmap.org/copyright. Position du cabinet : 46.096118, 7.225448, fiche officielle Verbier Tourisme : https://www.verbier.ch/pratique/shop-magasins-et-boutique/physioverbier-verbier-fr-2923264/. Carte statique hébergée avec le site, sans appel cartographique externe côté visiteur.
