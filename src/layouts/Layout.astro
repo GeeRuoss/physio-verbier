@@ -31,7 +31,7 @@ const descriptionsForClinic = (lang: Lang) => lang === "fr"
   ? "Cabinet de physiothérapie, massages et coaching sportif à Verbier."
   : "Physiotherapy, massage and personal training clinic in Verbier.";
 const t = ui[lang];
-const pages: Page[] = ["home", "team", "services", "pricing", "location"];
+const pages: Page[] = ["home", "team", "services", "pricing"];
 const canonical = new URL(href(lang, page), Astro.site);
 const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 ---
