@@ -1085,15 +1085,6 @@ section[id] {
   position: relative;
   z-index: 1;
 }
-.mountain-line {
-  position: absolute;
-  width: 50%;
-  max-width: 650px;
-  right: -5%;
-  bottom: -20%;
-  color: var(--ink);
-  opacity: 0.4;
-}
 .site-footer {
   background: var(--deep);
   color: var(--paper);
@@ -1560,10 +1551,6 @@ section[id] {
   }
   .form-panel {
     padding: 1.25rem;
-  }
-  .closing-cta .mountain-line {
-    width: 70%;
-    opacity: 0.25;
   }
   .footer-bottom {
     flex-direction: column;
