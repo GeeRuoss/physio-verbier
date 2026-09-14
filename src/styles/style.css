@@ -1772,3 +1772,15 @@ body:has(.menu-toggle[aria-expanded="true"]) .wa-widget { visibility: hidden; }
  .hero-heading .button { font-size: 16px; gap: 10px; padding-left: 16px; padding-right: 16px; }
 }
 @media(prefers-reduced-motion: reduce) { .wa-float { transition: none; } }
+
+/* Soins : accordéons plus doux, lecture aérée. */
+.techniques .detail-row { border-color: #214f4f18; }
+.techniques .detail-row summary { font-size: 20px; font-weight: 400; padding: 1.3rem 0; }
+.techniques .detail-row > .prose { padding: 0 2.5rem 1.6rem 0; line-height: 1.75; }
+.techniques .plus { width: 30px; height: 30px; border-radius: 50%; background: #214f4f08; }
+.techniques .plus::before, .techniques .plus::after { width: 12px; top: 14px; left: 9px; }
+.detail-row[data-expanded="false"] .plus::after { transform: rotate(90deg); }
+.treatment-note { background: transparent; border-left: 2px solid #aebfae; padding: .2rem 0 .2rem 1.3rem; margin-top: 2rem; }
+.treatment-photo { border-radius: 18px; }
+@media(prefers-reduced-motion: reduce) { .plus::after { transition: none; } }
+@media(max-width: 700px) { .techniques .detail-row > .prose { padding-right: 0; } }
