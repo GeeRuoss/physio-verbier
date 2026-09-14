@@ -24,33 +24,41 @@ export function getStaticPaths() {
 const { lang, page } = Astro.props as { lang: Lang; page: Page };
 const t = ui[lang],
   c = content[lang];
-const titles = {
-  home:
-    lang === "fr"
-      ? "Physiothérapie, sport et bien-être à Verbier"
-      : "Physiotherapy, sport and well-being in Verbier",
-  team: t.meet,
-  services: t.allServices,
-  pricing:
-    lang === "fr" ? "Tarifs et première visite" : "Prices and your first visit",
-  location: t.locationTitle,
-  contact: t.book,
-  privacy: t.privacy,
+const titles = lang === "fr" ? {
+  home: "Physiothérapie à Verbier · Massages et sport",
+  team: "Notre équipe de physiothérapeutes à Verbier",
+  services: "Physiothérapie, massages et coaching à Verbier",
+  pricing: "Tarifs de physiothérapie et massages à Verbier",
+  location: "Cabinet de physiothérapie à Verbier · Accès",
+  contact: "Rendez-vous de physiothérapie à Verbier",
+  privacy: "Mentions légales et confidentialité",
+} : {
+  home: "Physiotherapy in Verbier · Massage and sport",
+  team: "Our physiotherapy team in Verbier",
+  services: "Physiotherapy, massage and coaching in Verbier",
+  pricing: "Physiotherapy and massage prices in Verbier",
+  location: "Physiotherapy clinic in Verbier · Directions",
+  contact: "Book physiotherapy in Verbier",
+  privacy: "Legal notice and privacy",
 };
-const description =
-  page === "home"
-    ? t.intro
-    : page === "team"
-      ? t.teamIntro
-      : page === "pricing"
-        ? t.pricingIntro
-        : page === "location"
-          ? t.locationIntro
-          : page === "contact"
-            ? t.contactIntro
-            : lang === "fr"
-              ? "Découvrez PhysioVerbier : physiothérapie, massages et coaching sportif au cœur de Verbier."
-              : "Discover PhysioVerbier: physiotherapy, massage and personal training in the heart of Verbier.";
+const descriptions = lang === "fr" ? {
+  home: "Physiothérapie, massages et coaching sportif à Verbier. Soins personnalisés au cabinet, Route de Verbier Station 74. Découvrez l’équipe et prenez rendez-vous.",
+  team: "Rencontrez Piero, Hannah et Sybille, l’équipe de PhysioVerbier. Découvrez leurs parcours et leur approche des soins au cabinet de Verbier.",
+  services: "Découvrez les soins de PhysioVerbier : physiothérapie, massages et coaching sportif. Un accompagnement adapté à vos besoins au cœur de Verbier.",
+  pricing: "Consultez les tarifs de physiothérapie, massages et coaching sportif chez PhysioVerbier et les informations utiles pour préparer votre première visite.",
+  location: "Retrouvez PhysioVerbier à la Route de Verbier Station 74, 1936 Verbier. Adresse, itinéraire et horaires du cabinet de physiothérapie.",
+  contact: "Prenez rendez-vous chez PhysioVerbier par téléphone, email ou WhatsApp. Retrouvez les coordonnées et horaires de contact du cabinet à Verbier.",
+  privacy: "Informations légales, confidentialité et traitement des données sur le site PhysioVerbier.",
+} : {
+  home: "Physiotherapy, massage and personal training in Verbier. Personalised care at Route de Verbier Station 74. Meet the team and book an appointment.",
+  team: "Meet Piero, Hannah and Sybille at PhysioVerbier. Discover their backgrounds and approach to personalised care at our Verbier clinic.",
+  services: "Explore physiotherapy, massage and personal training at PhysioVerbier. Personalised care adapted to your needs in the heart of Verbier.",
+  pricing: "See physiotherapy, massage and personal training prices at PhysioVerbier and find practical information for your first visit.",
+  location: "Find PhysioVerbier at Route de Verbier Station 74, 1936 Verbier. Clinic address, directions and opening hours.",
+  contact: "Book an appointment with PhysioVerbier by phone, email or WhatsApp. Find contact details and reception hours for our Verbier clinic.",
+  privacy: "Legal information, privacy and data processing on the PhysioVerbier website.",
+};
+const description = descriptions[page];
 const names = ["Piero", "Hannah", "Sybille"];
 const ids = ["physiotherapie", "massages", "coaching"];
 const plain = (s: string) =>
@@ -112,7 +120,7 @@ const plain = (s: string) =>
             </h2>
             <p>
               {lang === "fr"
-                ? "Au cœur de Verbier, nous vous offrons des soins personnalisés, adaptés à vos besoins et à vos objectifs. Pour retrouver votre bien-être et reprendre les activités que vous aimez."
+                ? "Notre cabinet de physiothérapie à Verbier vous propose des soins personnalisés, des massages et du coaching sportif. Pour retrouver votre bien-être et reprendre les activités que vous aimez."
                 : "In the heart of Verbier, we offer personalised care tailored to your needs and goals. To help you feel better and get back to the activities you love."}
             </p>
             <a class="text-link" href={href(lang, "services")}>

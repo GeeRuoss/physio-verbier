@@ -25,6 +25,9 @@ const {
   title: string;
   description: string;
 };
+const descriptionsForClinic = (lang: Lang) => lang === "fr"
+  ? "Cabinet de physiothérapie, massages et coaching sportif à Verbier."
+  : "Physiotherapy, massage and personal training clinic in Verbier.";
 const t = ui[lang];
 const pages: Page[] = ["home", "team", "services", "pricing", "location"];
 const canonical = new URL(href(lang, page), Astro.site);
@@ -54,6 +57,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       hreflang="en"
       href={new URL(href("en", page), Astro.site)}
     />
+    <link rel="alternate" hreflang="x-default" href={new URL(href("fr", page), Astro.site)} />
     <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -70,7 +74,18 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         set:html={JSON.stringify({
           "@context": "https://schema.org",
           "@type": "MedicalClinic",
+          "@id": "https://physio-verbier.com/#clinic",
           name: "PhysioVerbier",
+          description: descriptionsForClinic(lang),
+          image: "https://physio-verbier.com/images/photo-02-1280.webp",
+          logo: "https://physio-verbier.com/images/logo.png",
+          hasMap: maps,
+          sameAs: ["https://www.instagram.com/physioverbier/", "https://www.facebook.com/physioverbier/"],
+          openingHoursSpecification: [{
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            opens: "08:30", closes: "18:30",
+          }],
           url: "https://physio-verbier.com",
           telephone: "+41275650660",
           email: "info@physio-verbier.com",

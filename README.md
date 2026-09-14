@@ -42,7 +42,7 @@ Pour compiler à la racine du domaine :
 SITE_URL=https://physio-verbier.com BASE_PATH=/ PUBLIC_PREVIEW=false npm run build
 ```
 
-Le contenu de `dist/` peut être servi par un hébergement web statique ou PHP. Le paramètre `PUBLIC_PREVIEW=false` retire le bandeau, active l’indexation et les données structurées. Il ne branche pas le formulaire.
+Le contenu de `dist/` peut être servi par un hébergement web statique ou PHP. Le paramètre `PUBLIC_PREVIEW=false` retire la mention de prévisualisation, active l’indexation et les données structurées. Il ne branche pas le formulaire.
 
 Avant la bascule finale :
 
@@ -55,3 +55,9 @@ Avant la bascule finale :
 ## État des avis
 
 Un lien vers la fiche Google est proposé. Aucune note et aucun témoignage n’ont été inventés. La reprise de témoignages précis pourra être ajoutée après choix et validation du cabinet.
+
+## Préservation SEO à la migration
+
+Titres et descriptions spécifiques FR/EN, données MedicalClinic (coordonnées, horaires, profils officiels), canonical, hreflang et sitemap. Le miroir GitHub reste noindex. Aucun classement actuel n’a été mesuré.
+
+Le sitemap WordPress relevé le 14 septembre 2026 conserve les mêmes chemins pour les pages métier. Deux anciennes adresses légales changent : appliquer les redirections 301 de `deployment/infomaniak.htaccess` lors de la migration, puis contrôler les autres URLs connues dans Search Console avant la bascule. Soumettre le sitemap du domaine définitif après mise en ligne et suivre les erreurs d’indexation.

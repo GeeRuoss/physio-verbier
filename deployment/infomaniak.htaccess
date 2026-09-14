@@ -1,0 +1,3 @@
+# À intégrer au .htaccess Infomaniak lors de la bascule, après les tests de staging.
+Redirect 301 /mentions-legales-et-politique-de-confidentialite/ https://physio-verbier.com/confidentialite/
+Redirect 301 /en/privacy-policy/ https://physio-verbier.com/en/privacy/
