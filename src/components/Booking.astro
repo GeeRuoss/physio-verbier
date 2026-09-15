@@ -7,10 +7,15 @@ const care=fr?['Physiothérapie','Massage','Coaching sportif','Je souhaite un co
 ---
 <section class="booking" id="reservation" data-lang={lang}>
  <h2>{fr?'Votre prochain':'Your next'}<br/><em>{fr?'rendez-vous.':'appointment.'}</em></h2>
+ <div class="booking-progress" hidden aria-live="polite"><span class="booking-step-label"></span><div class="booking-progress-track" aria-hidden="true"><i></i><i></i><i></i></div></div>
  <form method="dialog" data-booking-form>
+ <div class="booking-stage">
+ <div class="booking-step" tabindex="-1" aria-label={fr?'Choisir le soin':'Choose your care'}>
   <fieldset><legend>{fr?'De quoi avez-vous envie ?':'What would you like?'}</legend><div class="booking-choices">
    {care.map((item,i)=><label><input type="radio" name="care" value={item} checked={i===0}/><span>{item}</span></label>)}
   </div></fieldset>
+  </div>
+  <div class="booking-step" tabindex="-1" aria-label={fr?"Vos disponibilités":"Your availability"}>
   <div class="booking-fields">
    <label>{fr?'Avec qui ?':'With whom?'}<select id="booking-therapist"><option value="">{fr?'Sans préférence':'No preference'}</option>{['Piero','Hannah','Sybille'].map(n=><option>{n}</option>)}</select></label>
    <label>{fr?'Quand ?':'When?'}<select id="booking-when"><option>{fr?'Dès que possible':'As soon as possible'}</option><option>{fr?'Cette semaine':'This week'}</option><option>{fr?'La semaine prochaine':'Next week'}</option><option value="date">{fr?'Une date précise':'A specific date'}</option></select></label>
@@ -18,9 +23,13 @@ const care=fr?['Physiothérapie','Massage','Coaching sportif','Je souhaite un co
    <label>{fr?'Quel moment ?':'What time of day?'}<select id="booking-time">{(fr?['Flexible','Le matin','L’après-midi']:['Flexible','Morning','Afternoon']).map(n=><option>{n}</option>)}</select></label>
    <label>{fr?'Votre prénom (facultatif)':'Your first name (optional)'}<input id="booking-name" type="text" autocomplete="given-name" maxlength="60"/></label>
   </div>
-  <details class="booking-preview"><summary>{fr?'Voir mon message':'Preview my message'}</summary><p id="booking-message"></p></details>
+  </div>
+  <div class="booking-step" tabindex="-1" aria-label={fr?'Votre message':'Your message'}>
+  <div class="booking-preview"><h3>{fr?'Votre message est prêt':'Your message is ready'}</h3><p id="booking-message"></p></div>
   <a class="button booking-send" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon/>{fr?'Continuer sur WhatsApp':'Continue on WhatsApp'}</a>
   <p class="booking-note">{fr?'Vous envoyez le message dans WhatsApp. Le cabinet confirme ensuite le créneau et le thérapeute. Aucun détail médical à renseigner ici.':'You send the message in WhatsApp. The clinic then confirms the time and therapist. No medical details are needed here.'}</p>
+  </div></div>
+  <div class="booking-navigation" hidden><button class="booking-back" type="button">← {fr?'Retour':'Back'}</button><button class="button booking-next" type="button">{fr?'Continuer':'Continue'} →</button></div>
   <noscript><p>{fr?'Écrivez-nous directement sur WhatsApp pour organiser votre rendez-vous.':'Message us directly on WhatsApp to arrange your appointment.'}</p></noscript>
  </form>
 </section>
@@ -41,7 +50,40 @@ const care=fr?['Physiothérapie','Massage','Coaching sportif','Je souhaite un co
    send.href=`https://wa.me/41762360988?text=${encodeURIComponent(message)}`;
   };
   form.addEventListener('input',update);form.addEventListener('change',update);
-  form.addEventListener('submit',e=>e.preventDefault());
+  const steps=Array.from(root.querySelectorAll<HTMLElement>('.booking-step'));
+  const stage=root.querySelector<HTMLElement>('.booking-stage')!;
+  const navigation=root.querySelector<HTMLElement>('.booking-navigation')!;
+  const progress=root.querySelector<HTMLElement>('.booking-progress')!;
+  const back=root.querySelector<HTMLButtonElement>('.booking-back')!;
+  const next=root.querySelector<HTMLButtonElement>('.booking-next')!;
+  const labels=root.dataset.lang==='fr'?['Le soin','Vos disponibilités','Votre message']:['Your care','Your availability','Your message'];
+  let step=0;
+  let heightAnimation:Animation|null=null;
+  const show=(index:number,animate=true)=>{
+   const previous=step;const height=stage.getBoundingClientRect().height;step=index;
+   heightAnimation?.cancel();
+   steps.forEach((panel,i)=>{panel.hidden=i!==step;});
+   back.hidden=step===0;next.hidden=step===2;
+   progress.querySelector('.booking-step-label')!.textContent=`${step+1} / 3 · ${labels[step]}`;
+   progress.querySelectorAll('i').forEach((dot,i)=>dot.classList.toggle('active',i<=step));
+   if(animate){
+    steps[step].focus({preventScroll:true});
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+     const end=stage.getBoundingClientRect().height;
+     heightAnimation=stage.animate({height:[`${height}px`,`${end}px`]},{duration:320,easing:'cubic-bezier(.22,1,.36,1)'});
+     steps[step].animate({opacity:[0,1],transform:[`translateY(${step>previous?14:-14}px)`,'translateY(0)']},{duration:320,easing:'cubic-bezier(.22,1,.36,1)'});
+    }
+    const top=progress.getBoundingClientRect().top;
+    if(top<0) progress.scrollIntoView({behavior:'instant',block:'start'});
+   }
+  };
+  const advance=()=>{
+   if(step===1 && !form.reportValidity())return;
+   if(step<2){update();show(step+1);}
+  };
+  next.addEventListener('click',advance);back.addEventListener('click',()=>show(Math.max(0,step-1)));
+  navigation.hidden=false;progress.hidden=false;show(0,false);
+  form.addEventListener('submit',e=>{e.preventDefault();advance();});
   send.addEventListener('click',e=>{if(!form.reportValidity())e.preventDefault();});update();
  }
 </script>
