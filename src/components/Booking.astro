@@ -1,0 +1,47 @@
+---
+import {type Lang,whatsapp} from '../data/site';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+const {lang}=Astro.props as {lang:Lang};
+const fr=lang==='fr';
+const care=fr?['Physiothérapie','Massage','Coaching sportif','Je souhaite un conseil']:['Physiotherapy','Massage','Personal training','I would like advice'];
+---
+<section class="booking" id="reservation" data-lang={lang}>
+ <h2>{fr?'Votre prochain':'Your next'}<br/><em>{fr?'rendez-vous.':'appointment.'}</em></h2>
+ <form method="dialog" data-booking-form>
+  <fieldset><legend>{fr?'De quoi avez-vous envie ?':'What would you like?'}</legend><div class="booking-choices">
+   {care.map((item,i)=><label><input type="radio" name="care" value={item} checked={i===0}/><span>{item}</span></label>)}
+  </div></fieldset>
+  <div class="booking-fields">
+   <label>{fr?'Avec qui ?':'With whom?'}<select id="booking-therapist"><option value="">{fr?'Sans préférence':'No preference'}</option>{['Piero','Hannah','Sybille'].map(n=><option>{n}</option>)}</select></label>
+   <label>{fr?'Quand ?':'When?'}<select id="booking-when"><option>{fr?'Dès que possible':'As soon as possible'}</option><option>{fr?'Cette semaine':'This week'}</option><option>{fr?'La semaine prochaine':'Next week'}</option><option value="date">{fr?'Une date précise':'A specific date'}</option></select></label>
+   <label class="booking-date" hidden>{fr?'Date souhaitée':'Preferred date'}<input type="date" id="booking-date"/></label>
+   <label>{fr?'Quel moment ?':'What time of day?'}<select id="booking-time">{(fr?['Flexible','Le matin','L’après-midi']:['Flexible','Morning','Afternoon']).map(n=><option>{n}</option>)}</select></label>
+   <label>{fr?'Votre prénom (facultatif)':'Your first name (optional)'}<input id="booking-name" type="text" autocomplete="given-name" maxlength="60"/></label>
+  </div>
+  <details class="booking-preview"><summary>{fr?'Voir mon message':'Preview my message'}</summary><p id="booking-message"></p></details>
+  <a class="button booking-send" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon/>{fr?'Continuer sur WhatsApp':'Continue on WhatsApp'}</a>
+  <p class="booking-note">{fr?'Vous envoyez le message dans WhatsApp. Le cabinet confirme ensuite le créneau et le thérapeute. Aucun détail médical à renseigner ici.':'You send the message in WhatsApp. The clinic then confirms the time and therapist. No medical details are needed here.'}</p>
+  <noscript><p>{fr?'Écrivez-nous directement sur WhatsApp pour organiser votre rendez-vous.':'Message us directly on WhatsApp to arrange your appointment.'}</p></noscript>
+ </form>
+</section>
+<script>
+ import {bookingMessage} from '../data/booking';
+ const root=document.querySelector<HTMLElement>('.booking');
+ if(root){
+  const form=root.querySelector<HTMLFormElement>('form')!;
+  const date=root.querySelector<HTMLInputElement>('#booking-date')!;
+  const when=root.querySelector<HTMLSelectElement>('#booking-when')!;
+  const send=root.querySelector<HTMLAnchorElement>('.booking-send')!;
+  const today=new Date(); date.min=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  const value=(id:string)=>(root.querySelector<HTMLInputElement|HTMLSelectElement>(id)!).value;
+  const update=()=>{
+   const specific=when.value==='date';root.querySelector<HTMLElement>('.booking-date')!.hidden=!specific;date.required=specific;date.disabled=!specific;
+   const message=bookingMessage({lang:root.dataset.lang||'fr',care:root.querySelector<HTMLInputElement>('input[name="care"]:checked')!.value,therapist:value('#booking-therapist'),when:specific?(date.value||''):when.value,time:value('#booking-time'),name:value('#booking-name')});
+   root.querySelector('#booking-message')!.textContent=message;
+   send.href=`https://wa.me/41762360988?text=${encodeURIComponent(message)}`;
+  };
+  form.addEventListener('input',update);form.addEventListener('change',update);
+  form.addEventListener('submit',e=>e.preventDefault());
+  send.addEventListener('click',e=>{if(!form.reportValidity())e.preventDefault();});update();
+ }
+</script>

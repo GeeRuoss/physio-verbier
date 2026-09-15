@@ -306,9 +306,9 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       <div class="wa-invite" hidden>
         <button class="wa-close" type="button" aria-label={lang === "fr" ? "Fermer l’invitation" : "Close invitation"}>×</button>
         <p>{lang === "fr" ? "Prenez rendez-vous sur WhatsApp." : "Book your appointment on WhatsApp."}</p>
-        <a href={whatsapp} target="_blank" rel="noopener noreferrer">{lang === "fr" ? "Écrivez-nous" : "Message us"} ↗</a>
+        <a href={href(lang, "contact") + "#reservation"}>{lang === "fr" ? "Préparer mon rendez-vous" : "Plan my appointment"} ↗</a>
       </div>
-      <a class="wa-float" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
+      <a class="wa-float" href={href(lang, "contact") + "#reservation"} aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
     </aside>
     <script>
       const invite = document.querySelector<HTMLElement>(".wa-invite");
@@ -321,7 +321,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       document.querySelectorAll(".wa-widget a").forEach(a => a.addEventListener("click", dismiss));
       document.addEventListener("keydown", e => { if(e.key === "Escape" && invite && !invite.hidden) dismiss(); });
       const offer = () => {
-        if(seen || !invite) return;
+        if(seen || !invite || document.querySelector(".booking")) return;
         if(document.hidden || document.querySelector('.menu-toggle[aria-expanded="true"]') || document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) { window.setTimeout(offer, 1000); return; }
         invite.hidden = false; remember();
       };
@@ -403,17 +403,6 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           observer.observe(el);
         });
       }
-      // Prototype uniquement : aucune requête, aucun stockage, aucune confirmation trompeuse.
-      const form = document.querySelector<HTMLFormElement>("[data-demo-form]");
-      form?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const status = document.querySelector<HTMLElement>("#form-status");
-        if (status) {
-          status.hidden = false;
-          status.focus();
-        }
-        form.reset();
-      });
     </script>
   </body>
 </html>

@@ -47,8 +47,8 @@ for (const file of htmlFiles) {
   if (file.includes("contact")) {
     assert.match(html, /<form[^>]+method="dialog"/);
     assert.doesNotMatch(html, /<form[^>]+action=/);
-    assert.doesNotMatch(html, /<input[^>]+name=/);
-    assert.match(html, /id="form-status"[^>]*hidden/);
+    assert.match(html, /data-booking-form/);
+    assert.match(html, /id="booking-message"/);
   }
 }
 const fr = readFileSync(join(dist, "tarifs/index.html"), "utf8");

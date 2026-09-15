@@ -30,7 +30,7 @@ Le chemin de prévisualisation est `/physio-verbier/`. Les contrôles `npm run c
 
 Les modifications de `main` déclenchent la compilation, le contrôle des liens et la publication GitHub Pages. Toutes les pages portent `noindex, nofollow`, et robots.txt interdit l’indexation demandée aux robots. Cette indication n’est pas un contrôle d’accès : le lien de présentation est public.
 
-Le formulaire est explicitement une démonstration : aucune requête réseau, aucun stockage et aucune simulation de confirmation réelle. Il a `method="dialog"`, aucun `action` ni nom de champ sérialisable. Les liens de téléphone, email et WhatsApp permettent de joindre réellement le cabinet. Aucun envoi réel n’est effectué par les tests.
+Le préparateur de rendez-vous compose localement un message (soin, préférence de thérapeute, disponibilité et prénom facultatif). Aucun champ n’est enregistré sur le site. Le bouton ouvre WhatsApp avec un message prérempli ; le visiteur envoie ensuite lui-même et le cabinet confirme le rendez-vous. Aucun message n’est envoyé par les tests.
 
 Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Un indicateur sessionStorage mémorise uniquement l’apparition de l’invitation WhatsApp. Les polices sont servies localement.
 

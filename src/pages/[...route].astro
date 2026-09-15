@@ -1,6 +1,7 @@
 ---
 import FindUs from "../components/FindUs.astro";
 import WhatsAppIcon from "../components/WhatsAppIcon.astro";
+import Booking from "../components/Booking.astro";
 import Layout from "../layouts/Layout.astro";
 import Arrow from "../components/Arrow.astro";
 import Photo from "../components/Photo.astro";
@@ -85,7 +86,7 @@ const plain = (s: string) =>
             <br />
             <em>{t.heroEm}</em>
           </h1>
-          <a class="button" href={whatsapp} target="_blank" rel="noopener noreferrer">
+          <a class="button" href={href(lang, "contact") + "#reservation"}>
             <WhatsAppIcon /> {lang === "fr" ? "Rendez-vous sur WhatsApp" : "Book on WhatsApp"}
           </a>
         </div>
@@ -509,67 +510,7 @@ const plain = (s: string) =>
             </a>
           </div>
         </div>
-        <div class="form-panel">
-          <h2>{t.formTitle}</h2>
-          <p>{t.formIntro}</p>
-          <div class="demo-notice" id="demo-notice">
-            {t.demo}
-          </div>
-          <form
-            data-demo-form
-            method="dialog"
-            aria-describedby="demo-notice medical-notice"
-          >
-            <label for="contact-name">{t.name}</label>
-            <input
-              id="contact-name"
-              type="text"
-              autocomplete="off"
-              maxlength="100"
-              required
-            />
-            <label for="contact-phone">{t.phone}</label>
-            <input
-              id="contact-phone"
-              type="tel"
-              autocomplete="off"
-              inputmode="tel"
-              maxlength="30"
-              minlength="6"
-              required
-            />
-            <label for="contact-email">{t.email}</label>
-            <input
-              id="contact-email"
-              type="email"
-              autocomplete="off"
-              maxlength="200"
-            />
-            <p id="medical-notice" class="form-fineprint">
-              {t.noMedical}
-            </p>
-            <button class="button" type="submit">
-              {t.submit}
-              <Arrow />
-            </button>
-            <p
-              id="form-status"
-              class="form-status"
-              role="status"
-              tabindex="-1"
-              hidden
-            >
-              {t.demoSuccess}
-            </p>
-            <noscript>
-              <p>{t.demo}</p>
-            </noscript>
-          </form>
-          <a class="privacy-link" href={href(lang, "privacy")}>
-            {t.privacy}
-            <Arrow diagonal />
-          </a>
-        </div>
+        <Booking lang={lang} />
       </section>
     </>
   )}
@@ -590,7 +531,7 @@ const plain = (s: string) =>
               Ce site est une première version destinée à présenter le futur
               site de PhysioVerbier. Il est provisoirement hébergé sur GitHub
               Pages. Il ne constitue pas un portail patient et ne permet pas de
-              transmettre de demande par formulaire.
+              transmettre de demande au cabinet sans ouvrir WhatsApp.
             </p>
             <h2>Le cabinet</h2>
             <p>
@@ -606,14 +547,7 @@ const plain = (s: string) =>
               <br />
               <a href="tel:+41275650660">+41 27 565 06 60</a>
             </p>
-            <h2>Formulaire de démonstration</h2>
-            <p>
-              Les champs servent uniquement à tester la présentation. Le site
-              n’envoie pas leur contenu à un serveur et ne l’enregistre ni dans
-              une base de données ni dans le stockage du navigateur. Utilisez
-              des informations fictives pour vos essais. Pour une demande
-              réelle, appelez le cabinet.
-            </p>
+            <h2>Préparer un rendez-vous</h2><p>Vos choix et votre prénom servent à préparer un message dans votre navigateur, sans enregistrement sur le site. Au clic sur « Continuer sur WhatsApp », ces informations sont transmises à WhatsApp dans le lien prérempli. Vous pouvez modifier le message avant de l’envoyer au cabinet. Le rendez-vous est confirmé ensuite par le cabinet. Ne renseignez pas de données médicales.</p>
             <h2>Hébergement et navigation</h2>
             <p>
               Cette prévisualisation utilise GitHub Pages, et non l’hébergement
@@ -661,7 +595,7 @@ const plain = (s: string) =>
             <p>
               This is a first version of the future PhysioVerbier website,
               temporarily hosted on GitHub Pages. It is not a patient portal and
-              does not accept enquiries through the form.
+              prepares appointment requests that visitors can send through WhatsApp.
             </p>
             <h2>The clinic</h2>
             <p>
@@ -677,13 +611,7 @@ const plain = (s: string) =>
               <br />
               <a href="tel:+41275650660">+41 27 565 06 60</a>
             </p>
-            <h2>Demo form</h2>
-            <p>
-              The fields are provided solely to test the layout. Their contents
-              are not sent to a server or saved in a database or browser storage
-              by this website. Please use fictitious details when testing. For a
-              real enquiry, call the clinic.
-            </p>
+            <h2>Appointment requests</h2><p>Your choices and first name prepare a message in your browser without being stored by this website. Clicking “Continue on WhatsApp” passes this information to WhatsApp in a prefilled link. You can edit the message before sending it to the clinic. The clinic confirms your appointment separately. Do not enter medical information.</p>
             <h2>Hosting and browsing</h2>
             <p>
               This preview uses GitHub Pages, not the final Infomaniak hosting.
