@@ -26,10 +26,12 @@ export const href = (lang: Lang, page: Page) => `${base}/${routes[lang][page]}`;
 export const asset = (file: string) => `${base}/${file}`;
 export const maps =
   "https://www.google.com/maps/search/?api=1&query=PhysioVerbier%20Route%20de%20Verbier%20Station%2074%201936%20Verbier";
+export const mapDirections = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("PhysioVerbier, Route de Verbier Station 74, 1936 Verbier, Switzerland");
+export const therapists = ["Hannah", "Sybille"];
 export const whatsapp = "https://wa.me/41762360988";
 export const ui = {
   fr: {
-    nav: ["Accueil", "L’équipe", "Les soins", "Les tarifs", "Nous trouver"],
+    nav: ["Accueil", "Notre équipe", "Nos soins", "Les tarifs", "Nous trouver"],
     book: "Prendre rendez-vous",
     contact: "Parlons de vous",
     skip: "Aller au contenu",
@@ -37,9 +39,9 @@ export const ui = {
     close: "Fermer",
     preview: "Première version",
     previewMore: "Site de présentation",
-    disciplines: ["Physiothérapie", "Sport", "Santé", "Bien-être"],
-    hero: "Reprenez pleinement",
-    heroEm: "ce que vous aimez.",
+    disciplines: ["Physiothérapie", "Sport", "Santé", "Bien-être", "Massage"],
+    hero: "Bienvenue chez",
+    heroEm: "PhysioVerbier.",
     intro:
       "Retrouvez votre santé et votre bien-être. Des soins personnalisés, au cœur de Verbier, pour retrouver le plaisir de bouger.",
     discover: "Découvrir nos soins",
@@ -68,7 +70,7 @@ export const ui = {
     approachTitle: "Voir plus loin.",
     approachEm: "Prendre soin de vous, dans votre globalité.",
     local: "Votre cabinet à Verbier",
-    openYear: "À vos côtés, toute l’année",
+    openYear: "Nous sommes ouverts toute l’année.",
     appointments: "Les rendez-vous",
     appointmentHours: "Lundi au vendredi · 8h30 à 18h30",
     reception: "Nous joindre par téléphone",
@@ -90,19 +92,20 @@ export const ui = {
     pricingEm: "Des tarifs clairs.",
     pricingIntro:
       "Retrouvez les tarifs de nos prestations et les informations utiles pour votre première visite.",
-    insurance: "Selon votre régime d’assurance",
+    insurance: "Séances privées",
+    insuranceCoverage: "Selon le régime d’assurance LAMal et LAA, sous ordonnance médicale.",
     privateRates: "Tarifs des séances privées",
     chf: "CHF",
     minutes: "min",
     practical: "Avant votre visite",
     practicalEm: "L’essentiel, simplement.",
     hannahNote:
-      "Pour Hannah : séances d’une heure, hors assurance de base suisse. Reconnaissance ASCA pour les assurances complémentaires. Vérifiez votre prise en charge auprès de votre assureur.",
+      "Pour Hannah : séances d’une heure, hors assurance de base suisse. Reconnaissance ASCA pour les assurances complémentaires. Pensez à vérifier votre prise en charge auprès de votre assureur.",
     servicesLead: "Retrouver votre équilibre.",
     servicesLeadEm: "À votre rythme.",
     techniques: "Une prise en charge sur mesure",
     specialized: "Nos services spécialisés",
-    specializedEm: "Une expertise qui vous suit.",
+    specializedEm: "Nos services spécialisés en physiothérapie",
     specialtyNames: [
       "Physiothérapie et rééducation sportive",
       "Rééducation orthopédique et rhumatologique",
@@ -112,7 +115,7 @@ export const ui = {
       "Drainage lymphatique",
     ],
     contactTitle: "Le premier pas,",
-    contactEm: "on le fait ensemble.",
+    contactEm: "nous le faisons ensemble.",
     contactIntro:
       "Pour un rendez-vous ou une question pratique, choisissez le moyen qui vous convient. Nous serons heureux de vous accompagner.",
     call: "Nous appeler",
@@ -148,9 +151,9 @@ export const ui = {
     close: "Close",
     preview: "First version",
     previewMore: "Design preview",
-    disciplines: ["Physiotherapy", "Sport", "Health", "Well-being"],
-    hero: "Rediscover the joy of",
-    heroEm: "what you love.",
+    disciplines: ["Physiotherapy", "Sport", "Health", "Well-being", "Massage"],
+    hero: "Welcome to",
+    heroEm: "PhysioVerbier.",
     intro:
       "Reclaim your health and well-being. Personalised care in the heart of Verbier, to help you enjoy moving again.",
     discover: "Explore our services",
@@ -179,7 +182,7 @@ export const ui = {
     approachTitle: "See the whole picture.",
     approachEm: "Care for your whole self.",
     local: "Your clinic in Verbier",
-    openYear: "Here for you, all year round",
+    openYear: "We are open all year round.",
     appointments: "Appointments",
     appointmentHours: "Monday to Friday · 8:30 am to 6:30 pm",
     reception: "Reach us by phone",
@@ -201,19 +204,20 @@ export const ui = {
     pricingEm: "Clear prices.",
     pricingIntro:
       "Explore the prices for our services and everything you need to know before your first visit.",
-    insurance: "According to your insurance plan",
+    insurance: "Private sessions",
+    insuranceCoverage: "Under LAMal health insurance and LAA accident insurance, with a medical prescription.",
     privateRates: "Private session prices",
     chf: "CHF",
     minutes: "min",
     practical: "Before your visit",
     practicalEm: "The essentials, made simple.",
     hannahNote:
-      "For Hannah: one-hour sessions, not covered by Swiss basic health insurance. ASCA recognition for supplementary insurance. Please check your coverage with your insurer.",
+      "For Hannah: one-hour sessions, not covered by Swiss basic health insurance. ASCA recognition for supplementary insurance. Please remember to check your coverage with your insurer.",
     servicesLead: "Find your balance.",
     servicesLeadEm: "At your own pace.",
     techniques: "Care tailored to you",
     specialized: "Our specialised services",
-    specializedEm: "Expertise that moves with you.",
+    specializedEm: "Our specialised physiotherapy services",
     specialtyNames: [
       "Sports physiotherapy and rehabilitation",
       "Orthopaedic and rheumatological rehabilitation",

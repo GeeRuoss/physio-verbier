@@ -61,3 +61,13 @@ Un lien vers la fiche Google est proposé. Aucune note et aucun témoignage n’
 Titres et descriptions spécifiques FR/EN, données MedicalClinic (coordonnées, horaires, profils officiels), canonical, hreflang et sitemap. Le miroir GitHub reste noindex. Aucun classement actuel n’a été mesuré.
 
 Le sitemap WordPress relevé le 14 septembre 2026 conserve les mêmes chemins pour les pages métier. Deux anciennes adresses légales changent : appliquer les redirections 301 de `deployment/infomaniak.htaccess` lors de la migration, puis contrôler les autres URLs connues dans Search Console avant la bascule. Soumettre le sitemap du domaine définitif après mise en ligne et suivre les erreurs d’indexation.
+
+## Retours du cabinet, 17 septembre 2026
+
+Retours intégrés en français et en anglais : titres Montserrat droits et plus petits, navigation agrandie avec « Nous trouver », photos et boutons arrondis, rubans vert foncé, flèches et appels à WhatsApp allégés. Accueil avec le panorama de Verbier, le soin du genou, le texte de présentation d’origine et le chapitre « Notre approche ». Équipe présentée : Hannah et Sybille, y compris dans le préparateur de rendez-vous. Les portraits individuels de la page équipe sont circulaires.
+
+Les tarifs privés restent inchangés. Le sous-titre proposé est « Séances privées », avec une mention distincte du régime LAMal/LAA sur ordonnance. La fiche d’accès utilise le nom PhysioVerbier dans la destination Google Maps et affiche les deux numéros de contact.
+
+Les images existantes servent de relais avant les nouvelles photos du cabinet. La photo de groupe est conservée conformément à la demande de mise en page sous cette grande photo ; son remplacement pourra accompagner la prochaine séance photo.
+
+Vérification : build et contrôle des 15 pages ; 12 pages FR/EN parcourues dans Chrome aux largeurs 320, 390, 768, 1100 et 1440 px ; menu mobile et message de rendez-vous vérifiés sans envoi.

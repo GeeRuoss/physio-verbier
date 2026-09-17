@@ -10,8 +10,8 @@
     "check": "node scripts/check-site.mjs"
   },
   "dependencies": {
-    "@fontsource/cormorant-garamond": "^5.2.6",
     "@fontsource/manrope": "^5.2.6",
+    "@fontsource/montserrat": "^5.3.0",
     "astro": "^7.3.2"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@ Textes et images : site public physio-verbier.com, relevé du 14 septembre 2026,
 
 Photographies créditées Claudia Lamothe dans les fichiers d’origine : crédits conservés ci-dessous. Aucun portrait généré.
 
-Polices : Manrope et Cormorant Garamond, distribuées sous SIL Open Font License via Fontsource.
+Polices : Manrope et Montserrat, distribuées sous SIL Open Font License via Fontsource.
 
 - `photo-01-{640,1280,1920}.webp` : « Ski, les Attelas », © Verbier 4Vallées. https://verbier4vallees.ch/fr/medias/banque-dimages?q=ski — utilisation autorisée, accord confirmé par Guillermo le 14 septembre 2026.
 - `photo-02-1280.webp` : https://physio-verbier.com/wp-content/uploads/2024/11/physioverbier-soins-therapie-reeducation.png
@@ -26,3 +26,7 @@ Polices : Manrope et Cormorant Garamond, distribuées sous SIL Open Font License
 ## Plan du cabinet
 
 Carte vectorielle : données © contributeurs OpenStreetMap, ODbL 1.0, extraites via Overpass le 14 septembre 2026. Attribution visible et lien vers https://www.openstreetmap.org/copyright. Position du cabinet : 46.096118, 7.225448, fiche officielle Verbier Tourisme : https://www.verbier.ch/pratique/shop-magasins-et-boutique/physioverbier-verbier-fr-2923264/. Carte statique hébergée avec le site, sans appel cartographique externe côté visiteur.
+
+Photos supplémentaires réutilisées le 17 septembre 2026 :
+- `photo-05-{640,1280}.webp` : panorama de Verbier, https://physio-verbier.com/wp-content/uploads/2026/08/VERBIER.jpg
+- `photo-09-{640,1280}.webp` : soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_desktop.jpg

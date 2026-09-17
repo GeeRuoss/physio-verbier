@@ -2,10 +2,12 @@
 import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
-import "@fontsource/cormorant-garamond/latin-500-italic.css";
+import "@fontsource/montserrat/latin-400.css";
+import "@fontsource/montserrat/latin-500.css";
 import "../styles/style.css";
 import WhatsAppIcon from "../components/WhatsAppIcon.astro";
 import FindUs from "../components/FindUs.astro";
+import ContactIcon from "../components/ContactIcon.astro";
 import Arrow from "../components/Arrow.astro";
 import {
   asset,
@@ -31,7 +33,7 @@ const descriptionsForClinic = (lang: Lang) => lang === "fr"
   ? "Cabinet de physiothérapie, massages et coaching sportif à Verbier."
   : "Physiotherapy, massage and personal training clinic in Verbier.";
 const t = ui[lang];
-const pages: Page[] = ["home", "team", "services", "pricing"];
+const pages: Page[] = ["home", "team", "services", "pricing", "location"];
 const canonical = new URL(href(lang, page), Astro.site);
 const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 ---
@@ -150,7 +152,6 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           href={href(lang, "contact")}
         >
           {t.book}
-          <Arrow diagonal />
         </a>
         <button
           class="menu-toggle"
@@ -181,7 +182,6 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         ))}
         <a class="mobile-contact" href={href(lang, "contact")}>
           {t.book}
-          <Arrow diagonal />
         </a>
       </nav>
     </header>
@@ -200,21 +200,6 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       <slot />
     </main>
     <!-- === INVITATION ET PIED DE PAGE === -->
-    {page !== "contact" && page !== "privacy" && (
-      <section class="closing-cta">
-        <div class="container">
-          <h2>
-            {t.together}
-            <br />
-            <em>{t.mountains}</em>
-          </h2>
-          <a class="button button--cream" href={href(lang, "contact")}>
-            {t.book}
-            <Arrow diagonal />
-          </a>
-        </div>
-      </section>
-    )}
     {page !== "location" && page !== "privacy" && <FindUs lang={lang} />}
     <footer class="site-footer">
       <div class="container footer-grid">
@@ -231,28 +216,28 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           <div class="social-links">
             <a href={maps} target="_blank" rel="noopener noreferrer">
               {lang === "fr" ? "Avis Google" : "Google reviews"}
-              <Arrow diagonal />
+
             </a>
             <a
               href="https://www.instagram.com/physioverbier/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Instagram
-              <Arrow diagonal />
+              <ContactIcon name="instagram" /> Instagram
+
             </a>
             <a
               href="https://www.facebook.com/physioverbier/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Facebook
-              <Arrow diagonal />
+              <ContactIcon name="facebook" /> Facebook
+
             </a>
           </div>
         </div>
         <div>
-          <h2>{t.address}</h2>
+          <h2><ContactIcon name="pin" />{t.address}</h2>
           <a
             class="address-link"
             href={maps}
@@ -262,18 +247,20 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
             {t.route}
             <br />
             {t.town}
-            <Arrow diagonal />
+
           </a>
-          <a href="tel:+41275650660">+41 (0)27 565 06 60</a>
-          <a href="mailto:info@physio-verbier.com">info@physio-verbier.com</a>
-          <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+          <a class="icon-link" href="tel:+41275650660"><ContactIcon name="phone" />+41 (0)27 565 06 60</a>
+          <a class="icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" />info@physio-verbier.com</a>
+          <a class="icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon />
             WhatsApp · +41 (0)76 236 09 88
           </a>
         </div>
         <div>
-          <h2>{t.appointments}</h2>
+          <h2><ContactIcon name="clock" />{t.appointments}</h2>
           <p>{t.appointmentHours}</p>
-          <h2>{t.reception}</h2>
+          <p>{t.openYear}</p>
+          <h2><ContactIcon name="phone" />{t.reception}</h2>
           <p>
             {t.phoneHours}
             <br />
@@ -306,7 +293,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       <div class="wa-invite" hidden>
         <button class="wa-close" type="button" aria-label={lang === "fr" ? "Fermer l’invitation" : "Close invitation"}>×</button>
         <p>{lang === "fr" ? "Prenez rendez-vous sur WhatsApp." : "Book your appointment on WhatsApp."}</p>
-        <a href={href(lang, "contact") + "#reservation"}>{lang === "fr" ? "Préparer mon rendez-vous" : "Plan my appointment"} ↗</a>
+        <a href={href(lang, "contact") + "#reservation"}>{lang === "fr" ? "Préparer mon rendez-vous" : "Plan my appointment"}</a>
       </div>
       <a class="wa-float" href={href(lang, "contact") + "#reservation"} aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
     </aside>

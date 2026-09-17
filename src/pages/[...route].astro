@@ -1,4 +1,5 @@
 ---
+import ContactIcon from "../components/ContactIcon.astro";
 import FindUs from "../components/FindUs.astro";
 import WhatsAppIcon from "../components/WhatsAppIcon.astro";
 import Booking from "../components/Booking.astro";
@@ -13,6 +14,7 @@ import {
   ui,
   maps,
   whatsapp,
+  therapists,
   type Lang,
   type Page,
 } from "../data/site";
@@ -46,7 +48,7 @@ const titles = lang === "fr" ? {
 };
 const descriptions = lang === "fr" ? {
   home: "Physiothérapie, massages et coaching sportif à Verbier. Soins personnalisés au cabinet, Route de Verbier Station 74. Découvrez l’équipe et prenez rendez-vous.",
-  team: "Rencontrez Piero, Hannah et Sybille, l’équipe de PhysioVerbier. Découvrez leurs parcours et leur approche des soins au cabinet de Verbier.",
+  team: "Rencontrez Hannah et Sybille, l’équipe de PhysioVerbier. Découvrez leurs parcours et leur approche des soins au cabinet de Verbier.",
   services: "Découvrez les soins de PhysioVerbier : physiothérapie, massages et coaching sportif. Un accompagnement adapté à vos besoins au cœur de Verbier.",
   pricing: "Consultez les tarifs de physiothérapie, massages et coaching sportif chez PhysioVerbier et les informations utiles pour préparer votre première visite.",
   location: "Retrouvez PhysioVerbier à la Route de Verbier Station 74, 1936 Verbier. Adresse, itinéraire et horaires du cabinet de physiothérapie.",
@@ -54,7 +56,7 @@ const descriptions = lang === "fr" ? {
   privacy: "Informations légales, confidentialité et traitement des données sur le site PhysioVerbier.",
 } : {
   home: "Physiotherapy, massage and personal training in Verbier. Personalised care at Route de Verbier Station 74. Meet the team and book an appointment.",
-  team: "Meet Piero, Hannah and Sybille at PhysioVerbier. Discover their backgrounds and approach to personalised care at our Verbier clinic.",
+  team: "Meet Hannah and Sybille at PhysioVerbier. Discover their backgrounds and approach to personalised care at our Verbier clinic.",
   services: "Explore physiotherapy, massage and personal training at PhysioVerbier. Personalised care adapted to your needs in the heart of Verbier.",
   pricing: "See physiotherapy, massage and personal training prices at PhysioVerbier and find practical information for your first visit.",
   location: "Find PhysioVerbier at Route de Verbier Station 74, 1936 Verbier. Clinic address, directions and opening hours.",
@@ -62,7 +64,7 @@ const descriptions = lang === "fr" ? {
   privacy: "Legal information, privacy and data processing on the PhysioVerbier website.",
 };
 const description = descriptions[page];
-const names = ["Piero", "Hannah", "Sybille"];
+const names = therapists;
 const ids = ["physiotherapie", "massages", "coaching"];
 const plain = (s: string) =>
   s
@@ -86,20 +88,21 @@ const plain = (s: string) =>
             <br />
             <em>{t.heroEm}</em>
           </h1>
-          <a class="button" href={href(lang, "contact") + "#reservation"}>
-            <WhatsAppIcon /> {lang === "fr" ? "Rendez-vous sur WhatsApp" : "Book on WhatsApp"}
-          </a>
+
         </div>
       </section>
+      <div class="discipline-band" aria-label={lang === "fr" ? "Nos domaines" : "Our disciplines"}>
+        {t.disciplines.map(name => <span>{name}</span>)}
+      </div>
       <div class="hero-photo-wrap">
         <Photo
           class="hero-photo"
-          id={1}
+          id={5}
           eager
           alt={
             lang === "fr"
-              ? "Skieur aux Attelas, dans les montagnes de Verbier"
-              : "Skier at Les Attelas in the mountains of Verbier"
+              ? "Panorama de Verbier et des montagnes environnantes"
+              : "Panoramic view of Verbier and the surrounding mountains"
           }
           sizes="100vw"
         />
@@ -107,11 +110,11 @@ const plain = (s: string) =>
       <section id="bienvenue" class="section container welcome-section">
         <div class="care-grid">
           <Photo
-            id={2}
+            id={9}
             alt={
               lang === "fr"
-                ? "Soin personnalisé chez PhysioVerbier"
-                : "Personalised care at PhysioVerbier"
+                ? "Soin du genou chez PhysioVerbier"
+                : "Knee treatment at PhysioVerbier"
             }
           />
           <div class="care-copy">
@@ -120,14 +123,9 @@ const plain = (s: string) =>
               <br />
               <em>{t.careEm}</em>
             </h2>
-            <p>
-              {lang === "fr"
-                ? "Notre cabinet de physiothérapie à Verbier vous propose des soins personnalisés, des massages et du coaching sportif. Pour retrouver votre bien-être et reprendre les activités que vous aimez."
-                : "In the heart of Verbier, we offer personalised care tailored to your needs and goals. To help you feel better and get back to the activities you love."}
-            </p>
+            <div class="prose welcome-text" set:html={c.home[2].slice(c.home[2].indexOf("</p>") + 4)} />
             <a class="text-link" href={href(lang, "services")}>
               {t.discover}
-              <Arrow diagonal />
             </a>
           </div>
         </div>
@@ -141,11 +139,9 @@ const plain = (s: string) =>
                 class="service-link"
                 href={`${href(lang, "services")}#${ids[i]}`}
               >
-                <Photo id={[10, 13, 14][i]} alt="" sizes="200px" />
+                <Photo id={[2, 13, 14][i]} alt="" sizes="200px" />
                 <h3>{name}</h3>
-                <span class="round-arrow">
-                  <Arrow diagonal />
-                </span>
+                <span class="round-arrow"><Arrow /></span>
               </a>
             ))}
           </div>
@@ -156,10 +152,23 @@ const plain = (s: string) =>
           <h2>{lang === "fr" ? "Notre équipe" : "Our team"}</h2>
           <a class="text-link" href={href(lang, "team")}>
             {t.meet}
-            <Arrow diagonal />
           </a>
         </div>
         <TeamCards lang={lang} />
+        <p class="team-commitment">{plain(c.home[6])}</p>
+      </section>
+      <section class="container section original-approach">
+        <details class="detail-row">
+          <summary>
+            {t.approach}
+            <span class="plus" aria-hidden="true"></span>
+          </summary>
+          <div class="prose">
+            {[3, 4, 5].map((i) => (
+              <div set:html={c.home[i]} />
+            ))}
+          </div>
+        </details>
       </section>
     </>
   )}
@@ -191,7 +200,6 @@ const plain = (s: string) =>
         {names.map((name) => (
           <a href={`#${name.toLowerCase()}`}>
             {name}
-            <Arrow class="arrow-down" />
           </a>
         ))}
       </nav>
@@ -199,7 +207,7 @@ const plain = (s: string) =>
         {names.map((name, i) => (
           <section id={name.toLowerCase()} class="profile">
             <div class="profile-photo">
-              <Photo id={16 + i} alt={name} />
+              <Photo id={17 + i} alt={name} />
             </div>
             <div class="profile-copy">
               <h2>{name}</h2>
@@ -207,25 +215,12 @@ const plain = (s: string) =>
               <div class="prose biography" set:html={c.team[3 + i * 3]} />
               <a class="text-link" href={href(lang, "contact")}>
                 {t.book}
-                <Arrow diagonal />
               </a>
             </div>
           </section>
         ))}
       </div>
-      <section class="container section original-approach">
-        <details class="detail-row">
-          <summary>
-            {t.approach}
-            <span class="plus" aria-hidden="true"></span>
-          </summary>
-          <div class="prose">
-            {[2, 3, 4, 5, 6].map((i) => (
-              <div set:html={c.home[i]} />
-            ))}
-          </div>
-        </details>
-      </section>
+
     </>
   )}
   {page === "services" && (
@@ -242,7 +237,6 @@ const plain = (s: string) =>
         {t.serviceNames.map((name, i) => (
           <a href={`#${ids[i]}`}>
             {name}
-            <Arrow class="arrow-down" />
           </a>
         ))}
       </nav>
@@ -253,12 +247,12 @@ const plain = (s: string) =>
         </div>
         <Photo
           class="treatment-photo"
-          id={12}
+          id={3}
           eager
           alt={
             lang === "fr"
-              ? "Exercices de rééducation accompagnés par un physiothérapeute"
-              : "Guided rehabilitation exercises with a physiotherapist"
+              ? "La salle de rééducation et de sport de PhysioVerbier"
+              : "The rehabilitation and exercise room at PhysioVerbier"
           }
         />
         <div class="techniques">
@@ -306,7 +300,6 @@ const plain = (s: string) =>
           <div class="prose" set:html={c.services[17]} />
           <a class="text-link" href={href(lang, "pricing")}>
             {t.nav[3]}
-            <Arrow diagonal />
           </a>
         </div>
       </section>
@@ -325,9 +318,8 @@ const plain = (s: string) =>
         <div>
           <h2>{t.serviceNames[2]}</h2>
           <div class="prose" set:html={c.services[19]} />
-          <a class="text-link" href={href(lang, "contact")}>
-            {t.book}
-            <Arrow diagonal />
+          <a class="text-link" href={href(lang, "pricing")}>
+            {t.nav[3]}
           </a>
         </div>
       </section>
@@ -377,9 +369,9 @@ const plain = (s: string) =>
                 </div>
               ))}
             </dl>
+            {i === 0 && <p class="insurance-coverage">{t.insuranceCoverage}</p>}
             <a class="text-link" href={href(lang, "contact")}>
               {t.book}
-              <Arrow diagonal />
             </a>
           </article>
         ))}
@@ -422,6 +414,7 @@ const plain = (s: string) =>
           <em>{t.locationEm}</em>
         </h1>
       </section>
+      <div class="wide-photo container"><Photo id={19} alt={lang === "fr" ? "Les montagnes de Verbier en hiver" : "Verbier mountains in winter"} eager sizes="100vw" /></div>
       <FindUs lang={lang} full />
       <section class="section container location-info">
         <div>
@@ -429,7 +422,6 @@ const plain = (s: string) =>
           <p class="lead">{t.appointmentHours}</p>
           <a class="text-link" href={href(lang, "contact")}>
             {t.book}
-            <Arrow diagonal />
           </a>
         </div>
         <div>
@@ -440,9 +432,8 @@ const plain = (s: string) =>
             {t.phoneHours2}
           </p>
           <p>{t.daily}</p>
-          <a class="large-phone" href="tel:+41275650660">
-            +41 27 565 06 60
-          </a>
+          <a class="large-phone icon-link" href="tel:+41275650660"><ContactIcon name="phone" />+41 27 565 06 60</a>
+          <a class="large-phone icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />+41 76 236 09 88</a>
         </div>
       </section>
       <div class="container clinic-photos">
@@ -479,7 +470,7 @@ const plain = (s: string) =>
           <a class="contact-method" href="tel:+41275650660">
             <span class="contact-label">{t.call}</span>
             <span>+41 27 565 06 60</span>
-            <Arrow diagonal />
+
           </a>
           <a
             class="contact-method"
@@ -489,12 +480,12 @@ const plain = (s: string) =>
           >
             <span class="contact-label">{t.message}</span>
             <span>+41 76 236 09 88</span>
-            <Arrow diagonal />
+
           </a>
           <a class="contact-method" href="mailto:info@physio-verbier.com">
             <span class="contact-label">{t.write}</span>
             <span>info@physio-verbier.com</span>
-            <Arrow diagonal />
+
           </a>
           <div class="contact-hours">
             <h2>{t.reception}</h2>
@@ -506,7 +497,7 @@ const plain = (s: string) =>
             <p>{t.daily}</p>
             <a class="text-link" href={href(lang, "location")}>
               {t.nav[4]}
-              <Arrow diagonal />
+
             </a>
           </div>
         </div>
