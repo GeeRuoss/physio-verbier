@@ -32,7 +32,7 @@ Les modifications de `main` déclenchent la compilation, le contrôle des liens 
 
 Le préparateur de rendez-vous compose localement un message (soin, préférence de thérapeute, disponibilité et prénom facultatif). Aucun champ n’est enregistré sur le site. Le bouton ouvre WhatsApp avec un message prérempli ; le visiteur envoie ensuite lui-même et le cabinet confirme le rendez-vous. Aucun message n’est envoyé par les tests.
 
-Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Un indicateur sessionStorage mémorise uniquement l’apparition de l’invitation WhatsApp. Les polices sont servies localement.
+Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Les polices sont servies localement.
 
 ## Préparer Infomaniak
 
@@ -83,3 +83,5 @@ Titres et bandeau de disciplines centrés, logo et navigation agrandis, rubans v
 Coordonnées du pied de page alignées avec leurs icônes. La page d’accès ajoute l’email et conserve uniquement la vitrine, centrée. La page rendez-vous reprend le texte fourni et le formulaire complet de première version, avec les libellés et thérapeutes corrigés ; retrait du bloc carte sur cette page. Le vert des choix et du bouton utilise la couleur commune du site. Le texte « Vous êtes unique » et les noms des soins sont légèrement réduits pour rester sous la hiérarchie de « Notre équipe ».
 
 Contrôles V2 : build et 15 pages, 530 liens/ressources ; 12 pages FR/EN à 320, 390, 768, 1100 et 1440 px dans Chrome sans débordement ni image cassée. Menu mobile, préparation du message WhatsApp, date obligatoire et refus des dates passées contrôlés sans envoi.
+
+Le popup automatique WhatsApp est supprimé (17 septembre 2026). Seul le bouton flottant vers le préparateur de rendez-vous subsiste ; aucun minuteur ni stockage de session associé au popup.

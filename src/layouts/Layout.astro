@@ -301,29 +301,9 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       </div>
     </footer>
     <aside class="wa-widget" aria-label={lang === "fr" ? "Rendez-vous WhatsApp" : "WhatsApp appointments"}>
-      <div class="wa-invite" hidden>
-        <button class="wa-close" type="button" aria-label={lang === "fr" ? "Fermer l’invitation" : "Close invitation"}>×</button>
-        <p>{lang === "fr" ? "Prenez rendez-vous sur WhatsApp." : "Book your appointment on WhatsApp."}</p>
-        <a href={href(lang, "contact") + "#reservation"}>{lang === "fr" ? "Préparer mon rendez-vous" : "Plan my appointment"}</a>
-      </div>
       <a class="wa-float" href={href(lang, "contact") + "#reservation"} aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
     </aside>
     <script>
-      const invite = document.querySelector<HTMLElement>(".wa-invite");
-      const seenKey = "pv-whatsapp-seen";
-      let seen = false;
-      try { seen = sessionStorage.getItem(seenKey) === "1"; } catch {}
-      const remember = () => { seen = true; try { sessionStorage.setItem(seenKey, "1"); } catch {} };
-      const dismiss = () => { if(invite) invite.hidden = true; remember(); };
-      document.querySelector(".wa-close")?.addEventListener("click", dismiss);
-      document.querySelectorAll(".wa-widget a").forEach(a => a.addEventListener("click", dismiss));
-      document.addEventListener("keydown", e => { if(e.key === "Escape" && invite && !invite.hidden) dismiss(); });
-      const offer = () => {
-        if(seen || !invite || document.querySelector(".booking")) return;
-        if(document.hidden || document.querySelector('.menu-toggle[aria-expanded="true"]') || document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) { window.setTimeout(offer, 1000); return; }
-        invite.hidden = false; remember();
-      };
-      window.setTimeout(offer, 5000);
       document.querySelectorAll<HTMLButtonElement>(".share-location").forEach(button => button.addEventListener("click", async () => {
         const url = new URL(button.dataset.url || "", location.origin).href;
         try { await navigator.clipboard.writeText(url); button.textContent = button.dataset.copied || "Lien copié"; }
