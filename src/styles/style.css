@@ -163,8 +163,8 @@ section[id] {
   font-weight: 600;
 }
 .arrow {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 .arrow-down {
   transform: rotate(90deg);
@@ -1747,7 +1747,7 @@ section[id] {
 .wa-widget { position: fixed; bottom: calc(22px + env(safe-area-inset-bottom)); right: calc(22px + env(safe-area-inset-right)); z-index: 80; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
 .wa-float { width: 66px; height: 66px; border-radius: 50%; background: #c9eea6; color: #214f4f; display: grid; place-items: center; box-shadow: 0 6px 24px #143c3c25; border: 1px solid #214f4f20; transition: transform .2s; }
 .wa-float:hover { transform: translateY(-3px); }
-.wa-float svg { width: 37px; height: 37px; }
+.wa-float svg { width: 40px; height: 40px; }
 body:has(.menu-toggle[aria-expanded="true"]) .wa-widget { visibility: hidden; }
 .find-us { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 5vw; padding-top: 5rem; padding-bottom: 5rem; }
 .find-us h2 { font-size: clamp(1.9rem,3.1vw,3rem); margin-bottom: 1.5rem; }
@@ -1799,7 +1799,7 @@ body:has(.menu-toggle[aria-expanded="true"]) .wa-widget { visibility: hidden; }
 .booking-preview summary { cursor: pointer; font-size: 18px; }
 #booking-message { white-space: pre-line; margin-top: 18px; line-height: 1.65; overflow-wrap: anywhere; font-size: 18px; }
 .booking-send { background: #214f4f; color: #f8f6ed; border-radius: 30px; padding: 16px 22px; }
-.booking-send svg { width: 26px; height: 26px; }
+.booking-send svg { width: 30px; height: 30px; }
 .booking-note { font-size: 16px; line-height: 1.6; margin-top: 18px; }
 @media(max-width:700px) { .booking-fields { grid-template-columns: 1fr; } .contact-grid { display: flex; flex-direction: column-reverse; } .booking { width: 100%; } .booking-send { font-size:16px; gap:10px; padding:16px; } }
 body:has(.booking) .wa-widget { display: none; }
@@ -1844,7 +1844,7 @@ main img, .hero-photo-wrap, .team-card__photo { border-radius: var(--radius); }
 .location-info h2 { margin-bottom: 1.5rem; font-size: clamp(1.6rem,2.5vw,2.3rem); }
 .large-phone { font-size: 1.25rem; letter-spacing: 0; margin-top: 1.25rem; }
 .icon-link { display: flex; align-items: center; gap: .7rem; }
-.icon-link svg { width: 24px; height: 24px; flex: none; }
+.icon-link svg { width: 28px; height: 28px; flex: none; }
 .footer-grid h2 { display: flex; align-items: center; gap: .6rem; }
 .social-links a { display: inline-flex; align-items: center; gap: .5rem; }
 .brand { width: 195px; }
@@ -1895,7 +1895,7 @@ body[data-page="services"] .anchor-nav { margin-top: 0; }
 .icon-link { min-width: 0; }
 .icon-link span { min-width: 0; overflow-wrap: anywhere; }
 .footer-grid > div:not(.footer-brand) > a.icon-link { display: flex; align-items: center; column-gap: .85rem; margin-bottom: 1rem; }
-.footer-grid .address-link { margin-left: 2.35rem; padding-right: 0; }
+.footer-grid .address-link { margin-left: 2.6rem; padding-right: 0; }
 .footer-grid h2 { gap: .85rem; }
 body[data-page="contact"] .page-intro { max-width: 1100px; }
 body[data-page="contact"] .page-intro h1 { font-size: clamp(1.75rem, 3.1vw, 2.8rem); line-height: 1.4; }
