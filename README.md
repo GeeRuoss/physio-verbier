@@ -71,3 +71,7 @@ Les tarifs privés restent inchangés. Le sous-titre proposé est « Séances pr
 Les images existantes servent de relais avant les nouvelles photos du cabinet. La photo de groupe est conservée conformément à la demande de mise en page sous cette grande photo ; son remplacement pourra accompagner la prochaine séance photo.
 
 Vérification : build et contrôle des 15 pages ; 12 pages FR/EN parcourues dans Chrome aux largeurs 320, 390, 768, 1100 et 1440 px ; menu mobile et message de rendez-vous vérifiés sans envoi.
+
+## Image de partage
+
+La photo d’accueil et l’image Open Graph proviennent de `src/data/media.ts`. Modifier cette source commune lors d’un changement de visuel. Astro génère l’aperçu JPEG 1200 × 630 et une URL liée au contenu de l’image. Vérifier l’aperçu publié ; les messages WhatsApp déjà envoyés peuvent conserver leur ancienne vignette.

@@ -30,3 +30,5 @@ Carte vectorielle : données © contributeurs OpenStreetMap, ODbL 1.0, extraites
 Photos supplémentaires réutilisées le 17 septembre 2026 :
 - `photo-05-{640,1280}.webp` : panorama de Verbier, https://physio-verbier.com/wp-content/uploads/2026/08/VERBIER.jpg
 - `photo-09-{640,1280}.webp` : soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_desktop.jpg
+
+- `src/assets/verbier.webp` : même panorama de Verbier que `photo-05`, source commune à l’accueil et à l’aperçu social généré par Astro.
