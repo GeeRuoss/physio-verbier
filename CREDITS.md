@@ -32,3 +32,5 @@ Photos supplémentaires réutilisées le 17 septembre 2026 :
 - `photo-09-{640,1280}.webp` : soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_desktop.jpg
 
 - `src/assets/verbier.webp` : même panorama de Verbier que `photo-05`, source commune à l’accueil et à l’aperçu social généré par Astro.
+
+V2 : panorama réexporté depuis son original 1920 × 1280 ; `src/assets/rehabilitation.webp` provient de `IMG_0618-scaled.jpg` (2560 × 1920), même source que photo-03, pour le cadrage paysage des soins. Variantes responsives générées par Astro.

@@ -115,7 +115,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       ></script>
     )}
   </head>
-  <body>
+  <body data-page={page}>
     <a class="skip-link" href="#main">
       {t.skip}
     </a>
@@ -211,7 +211,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       <slot />
     </main>
     <!-- === INVITATION ET PIED DE PAGE === -->
-    {page !== "location" && page !== "privacy" && <FindUs lang={lang} />}
+    {page !== "location" && page !== "privacy" && page !== "contact" && <FindUs lang={lang} />}
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
@@ -260,11 +260,11 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
             {t.town}
 
           </a>
-          <a class="icon-link" href="tel:+41275650660"><ContactIcon name="phone" />+41 (0)27 565 06 60</a>
-          <a class="icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" />info@physio-verbier.com</a>
+          <a class="icon-link" href="tel:+41275650660"><ContactIcon name="phone" /><span>+41 (0)27 565 06 60</span></a>
+          <a class="icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" /><span>info@physio-verbier.com</span></a>
           <a class="icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon />
-            WhatsApp · +41 (0)76 236 09 88
+            <span>WhatsApp · +41 (0)76 236 09 88</span>
           </a>
         </div>
         <div>

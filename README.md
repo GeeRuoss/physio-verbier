@@ -75,3 +75,11 @@ Vérification : build et contrôle des 15 pages ; 12 pages FR/EN parcourues dans
 ## Image de partage
 
 La photo d’accueil et l’image Open Graph proviennent de `src/data/media.ts`. Modifier cette source commune lors d’un changement de visuel. Astro génère l’aperçu JPEG 1200 × 630 et une URL liée au contenu de l’image. Vérifier l’aperçu publié ; les messages WhatsApp déjà envoyés peuvent conserver leur ancienne vignette.
+
+## Retours V2 du cabinet, 17 septembre 2026
+
+Titres et bandeau de disciplines centrés, logo et navigation agrandis, rubans vert turquoise, espacements resserrés et hiérarchie des titres harmonisée. Le lien « Rencontrer notre équipe » suit l’engagement du cabinet ; les flèches des portraits sont supprimées. Les prénoms et les liens vers les soins partagent la même taille. Photo de physiothérapie en paysage depuis son original ; panorama d’accueil réexporté en 1920 px, aperçu social régénéré automatiquement.
+
+Coordonnées du pied de page alignées avec leurs icônes. La page d’accès ajoute l’email et conserve uniquement la vitrine, centrée. La page rendez-vous reprend le texte fourni et le formulaire complet de première version, avec les libellés et thérapeutes corrigés ; retrait du bloc carte sur cette page. Le vert des choix et du bouton utilise la couleur commune du site. Le texte « Vous êtes unique » et les noms des soins sont légèrement réduits pour rester sous la hiérarchie de « Notre équipe ».
+
+Contrôles V2 : build et 15 pages, 530 liens/ressources ; 12 pages FR/EN à 320, 390, 768, 1100 et 1440 px dans Chrome sans débordement ni image cassée. Menu mobile, préparation du message WhatsApp, date obligatoire et refus des dates passées contrôlés sans envoi.
