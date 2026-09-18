@@ -1858,7 +1858,6 @@ main img, .hero-photo-wrap, .team-card__photo { border-radius: var(--radius); }
 @media (min-width: 1100px) and (max-width: 1340px) { .header-book { display: none; } }
 @media (max-width: 420px) { .brand { width: 175px; } .discipline-band { font-size: .95rem; padding-inline: var(--gutter); } }
 @media (max-width: 360px) {
- .menu-toggle > span:first-child { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
  .menu-toggle { min-width: 44px; justify-content: center; }
  .header-actions { gap: .25rem; }
 }
@@ -1926,3 +1925,51 @@ body[data-page="contact"] .page-intro h1 br { display: none; }
 }
 @media (max-width: 420px) { .brand { width: 190px; } }
 @media (max-width: 360px) { .brand { width: 175px; } }
+
+/* Retours V3 du 18 septembre 2026. */
+.menu-toggle { min-width: 44px; justify-content: center; padding-inline: .5rem; }
+.hero-photo-wrap { height: auto; min-height: 0; max-height: none; aspect-ratio: 2 / 1; }
+.welcome-section { padding-top: clamp(3rem, 5vw, 4.5rem); }
+.original-approach .prose { text-align: justify; hyphens: auto; }
+.find-us { grid-template-columns: 1fr .8fr; max-width: 1100px; }
+.find-us h2 { line-height: 1.15; }
+.map-art { width: 100%; max-width: 420px; justify-self: center; }
+.footer-grid .contact-icon, .footer-grid .icon-link svg { width: 26px; height: 26px; }
+.footer-grid p, .footer-grid a { font-size: .95rem; }
+.footer-grid .address-link { margin-left: 2.475rem; }
+.footer-hours > p { padding-left: 2.475rem; }
+.footer-hours h2:not(:first-child) { margin-top: 2.5rem; }
+body[data-page="team"] .wide-photo img { aspect-ratio: auto; }
+body[data-page="services"] .page-intro .lead { margin-top: 2.75rem; }
+body[data-page="services"] .page-intro .prose, body[data-page="services"] .page-intro .prose p { text-align: justify; }
+body[data-page="services"] .page-intro .prose p + p { margin-top: 1.75rem; }
+.treatment { padding-block: clamp(3rem, 5vw, 5rem); gap: 2.5rem 3rem; }
+.treatment-heading { align-self: center; }
+.techniques { width: 100%; max-width: 1050px; justify-self: center; }
+.techniques .detail-row summary { font-weight: 600; }
+.treatment-note { border-left: 0; padding-left: 0; }
+.price-card:nth-child(2) { background: var(--paper-light); }
+.price-card dd { font-size: 1.6rem; }
+.practical-grid { align-items: end; }
+.practical-grid img { object-position: left center; }
+body[data-page="pricing"] .find-us { padding-top: 1.5rem; }
+.clinic-photos { max-width: 480px; }
+body[data-page="contact"] .page-intro h1 em { margin-top: 1.5rem; }
+.contact-methods { align-self: center; }
+.booking { background: #bed8d3; }
+.back-to-top .arrow { transform: rotate(-90deg); width: 24px; height: 24px; }
+@media (max-width: 700px) {
+ .hero-photo-wrap { aspect-ratio: 3 / 2; }
+ .find-us { grid-template-columns: 1fr; }
+ .map-art { max-width: 300px; }
+}
+@media (max-width: 767px) {
+ .footer-brand { text-align: center; }
+ .footer-brand img { margin-inline: auto; object-position: center; }
+ .footer-brand > p { margin-inline: auto; max-width: 300px; }
+ .footer-brand .social-links { justify-content: center; }
+}
+
+.footer-tools { display: flex; justify-content: flex-end; padding-bottom: 1.75rem; }
+.back-to-top { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 48px; padding: .65rem 1rem; border: 1px solid #ffffff60; border-radius: 999px; font-size: .95rem; }
+.back-to-top:hover { background: #ffffff15; }

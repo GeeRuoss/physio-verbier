@@ -1,7 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import teamImage from "../assets/equipe.jpg";
+import winterImage from "../assets/verbier-hiver.jpg";
+import clinicImage from "../assets/vitrine.jpg";
 import rehabilitationImage from "../assets/rehabilitation.webp";
-import { heroImage, heroAlt } from "../data/media";
+import { heroImage, heroAlt, heroPosition } from "../data/media";
 import ContactIcon from "../components/ContactIcon.astro";
 import FindUs from "../components/FindUs.astro";
 import WhatsAppIcon from "../components/WhatsAppIcon.astro";
@@ -102,7 +105,8 @@ const plain = (s: string) =>
           class="hero-photo"
           src={heroImage}
           alt={heroAlt[lang]}
-          widths={[640, 1280, 1920]}
+          widths={[640, 1280, 1600]}
+          style={`object-position: ${heroPosition}`}
           quality={90}
           sizes="100vw"
           loading="eager"
@@ -177,15 +181,15 @@ const plain = (s: string) =>
     <>
       <section class="page-intro container">
         <h1>
-          {t.teamTitle}
-          <br />
-          <em>{t.teamEm}</em>
+          {t.teamTitle}{" "}<em>{t.teamEm}</em>
         </h1>
       </section>
       <div class="wide-photo container">
-        <Photo
-          id={15}
-          eager
+        <Image
+          src={teamImage}
+          widths={[640, 1280, 1900]}
+          quality={90}
+          loading="eager"
           alt={
             lang === "fr"
               ? "L’équipe devant le cabinet PhysioVerbier"
@@ -418,7 +422,7 @@ const plain = (s: string) =>
           <em>{t.locationEm}</em>
         </h1>
       </section>
-      <div class="wide-photo container"><Photo id={19} alt={lang === "fr" ? "Les montagnes de Verbier en hiver" : "Verbier mountains in winter"} eager sizes="100vw" /></div>
+      <div class="wide-photo container"><Image src={winterImage} widths={[640, 1280, 1600]} quality={90} alt={lang === "fr" ? "Les montagnes de Verbier en hiver" : "Verbier mountains in winter"} loading="eager" sizes="100vw" /></div>
       <FindUs lang={lang} full />
       <section class="section container location-info">
         <div>
@@ -436,8 +440,8 @@ const plain = (s: string) =>
             {t.phoneHours2}
           </p>
           <p>{t.daily}</p>
-          <a class="large-phone icon-link" href="tel:+41275650660"><ContactIcon name="phone" />+41 27 565 06 60</a>
-          <a class="large-phone icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>+41 76 236 09 88</span></a>
+          <a class="large-phone icon-link" href="tel:+41275650660"><ContactIcon name="phone" />+41 (0)27 565 06 60</a>
+          <a class="large-phone icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>+41 (0)76 236 09 88</span></a>
           <div class="location-email">
             <h2>{t.write}</h2>
             <a class="large-phone icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" /><span>info@physio-verbier.com</span></a>
@@ -445,8 +449,12 @@ const plain = (s: string) =>
         </div>
       </section>
       <div class="container clinic-photos">
-        <Photo
-          id={7}
+        <Image
+          src={clinicImage}
+          widths={[480, 960]}
+          quality={90}
+          sizes="(min-width: 640px) 480px, 90vw"
+          loading="lazy"
           alt={
             lang === "fr"
               ? "La vitrine PhysioVerbier"
@@ -470,15 +478,14 @@ const plain = (s: string) =>
           <div class="contact-block">
             <h2>{t.reception}</h2>
             <p>{t.phoneHours}<br />{t.phoneHours2}</p>
-            <a class="large-phone icon-link" href="tel:+41275650660"><ContactIcon name="phone" /><span>+41 27 565 06 60</span></a>
+            <a class="large-phone icon-link" href="tel:+41275650660"><ContactIcon name="phone" /><span>+41 (0)27 565 06 60</span></a>
           </div>
           <div class="contact-block">
             <h2>{t.write}</h2>
             <p>{t.daily}</p>
             <a class="large-phone icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" /><span>info@physio-verbier.com</span></a>
-            <a class="large-phone icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>+41 76 236 09 88</span></a>
+            <a class="large-phone icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>+41 (0)76 236 09 88</span></a>
           </div>
-          <a class="text-link" href={href(lang, "location")}>{t.nav[4]}</a>
         </div>
         <Booking lang={lang} />
       </section>
@@ -515,7 +522,7 @@ const plain = (s: string) =>
                 info@physio-verbier.com
               </a>
               <br />
-              <a href="tel:+41275650660">+41 27 565 06 60</a>
+              <a href="tel:+41275650660">+41 (0)27 565 06 60</a>
             </p>
             <h2>Préparer un rendez-vous</h2><p>Vos choix et votre prénom servent à préparer un message dans votre navigateur, sans enregistrement sur le site. Au clic sur « Continuer sur WhatsApp », ces informations sont transmises à WhatsApp dans le lien prérempli. Vous pouvez modifier le message avant de l’envoyer au cabinet. Le rendez-vous est confirmé ensuite par le cabinet. Ne renseignez pas de données médicales.</p>
             <h2>Hébergement et navigation</h2>
@@ -554,7 +561,7 @@ const plain = (s: string) =>
             <h2>Images et contenus</h2>
             <p>
               Les textes et photographies proviennent du site actuel de
-              PhysioVerbier. Les crédits photographiques d’origine sont
+              PhysioVerbier et des fichiers remis pour la refonte. Les panoramas portent le crédit Verbier 4Vallées. Les crédits photographiques d’origine sont
               conservés dans les sources du projet, notamment Claudia Lamothe.
               Design et développement de cette version : Ruoss! Communication.
             </p>
@@ -579,7 +586,7 @@ const plain = (s: string) =>
                 info@physio-verbier.com
               </a>
               <br />
-              <a href="tel:+41275650660">+41 27 565 06 60</a>
+              <a href="tel:+41275650660">+41 (0)27 565 06 60</a>
             </p>
             <h2>Appointment requests</h2><p>Your choices and first name prepare a message in your browser without being stored by this website. Clicking “Continue on WhatsApp” passes this information to WhatsApp in a prefilled link. You can edit the message before sending it to the clinic. The clinic confirms your appointment separately. Do not enter medical information.</p>
             <h2>Hosting and browsing</h2>
@@ -616,7 +623,7 @@ const plain = (s: string) =>
             <h2>Images and content</h2>
             <p>
               Text and photography are taken from the existing PhysioVerbier
-              website. Original photographic credits, including Claudia Lamothe,
+              website and files provided for the redesign. The panoramic photographs are credited to Verbier 4Vallées. Original photographic credits, including Claudia Lamothe,
               are retained in the project sources. This version is designed and
               developed by Ruoss! Communication.
             </p>

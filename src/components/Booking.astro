@@ -6,7 +6,7 @@ const fr=lang==='fr';
 const care=fr?['Physiothérapie','Massage','Coaching sportif','Je souhaite un conseil']:['Physiotherapy','Massage','Personal training','I would like advice'];
 ---
 <section class="booking" id="reservation" data-lang={lang}>
- <h2>{fr?'Votre prochain':'Your next'}<br/><em>{fr?'rendez-vous.':'appointment.'}</em></h2>
+ <h2>{fr?'Votre prochain':'Your next'}<br/><em>{fr?'rendez-vous':'appointment'}</em></h2>
  <form method="dialog" data-booking-form>
   <fieldset><legend>{fr?'De quoi avez-vous besoin ?':'What do you need?'}</legend><div class="booking-choices">
    {care.map((item,i)=><label><input type="radio" name="care" value={item} checked={i===0}/><span>{item}</span></label>)}

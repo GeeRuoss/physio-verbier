@@ -84,4 +84,12 @@ Coordonnées du pied de page alignées avec leurs icônes. La page d’accès aj
 
 Contrôles V2 : build et 15 pages, 530 liens/ressources ; 12 pages FR/EN à 320, 390, 768, 1100 et 1440 px dans Chrome sans débordement ni image cassée. Menu mobile, préparation du message WhatsApp, date obligatoire et refus des dates passées contrôlés sans envoi.
 
-Le popup automatique WhatsApp est supprimé (17 septembre 2026). Seul le bouton flottant vers le préparateur de rendez-vous subsiste ; aucun minuteur ni stockage de session associé au popup.
+Le popup automatique WhatsApp est supprimé (17 septembre 2026). Seul le bouton flottant WhatsApp subsiste ; aucun minuteur ni stockage de session associé au popup.
+
+## Retours V3 du cabinet, 18 septembre 2026
+
+Photo d’accueil et panorama hivernal fournis intégrés, lettres Verbier visibles dans le cadrage mobile/bureau et dans l’aperçu social. Photo de groupe issue du fichier original 1900 px, vitrine verticale plus lisible. Menu mobile sans texte visible, numérotation ni flèches ; libellé accessible conservé. Bouton WhatsApp flottant directement vers le cabinet ; retour en haut dans le pied de page pour éviter de recouvrir le contenu sur téléphone.
+
+Horaires de rendez-vous jusqu’à 18h centralisés FR/EN et données structurées. Titres sans les points signalés, « Massage » au singulier, plans plus petits, pied de page réaligné et centré sur téléphone. Textes d’introduction des soins justifiés, techniques en gras, trait de la note supprimé. Montants réduits, cartes de tarifs uniformes, photo de salle recadrée à gauche et bas des informations pratiques aligné. Coordonnées cliquables dans l’accordéon de prise de rendez-vous. Formulaire turquoise clair, contacts centrés verticalement sur ordinateur, lien d’accès retiré du bloc contact.
+
+Chaque correction a été vérifiée sur mobile et bureau : 12 pages FR/EN à 320, 390, 768, 1100 et 1440 px ; captures relues, navigation, message de réservation, validation de date, retour en haut et liens directs contrôlés sans envoi. Build : 15 pages, liens et ressources internes vérifiés.

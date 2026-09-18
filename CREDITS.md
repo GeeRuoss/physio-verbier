@@ -31,6 +31,11 @@ Photos supplémentaires réutilisées le 17 septembre 2026 :
 - `photo-05-{640,1280}.webp` : panorama de Verbier, https://physio-verbier.com/wp-content/uploads/2026/08/VERBIER.jpg
 - `photo-09-{640,1280}.webp` : soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_desktop.jpg
 
-- `src/assets/verbier.webp` : même panorama de Verbier que `photo-05`, source commune à l’accueil et à l’aperçu social généré par Astro.
+- `src/assets/verbier.jpg` : même panorama de Verbier que `photo-05`, source commune à l’accueil et à l’aperçu social généré par Astro.
 
 V2 : panorama réexporté depuis son original 1920 × 1280 ; `src/assets/rehabilitation.webp` provient de `IMG_0618-scaled.jpg` (2560 × 1920), même source que photo-03, pour le cadrage paysage des soins. Variantes responsives générées par Astro.
+
+V3, 18 septembre 2026 :
+- `src/assets/verbier.jpg` et `src/assets/verbier-hiver.jpg` : les deux photographies remises par Guillermo le 18 septembre ; crédit visible Verbier 4Vallées conservé. Le cadrage de l’accueil et de l’aperçu social préserve les lettres « Verbier ».
+- `src/assets/equipe.jpg` : original 1900 × 759 de la photo de groupe Claudia Lamothe déjà créditée pour photo-15 ; variantes Astro jusqu’à la définition originale.
+- `src/assets/vitrine.jpg` : cadrage vertical existant du cabinet, https://physio-verbier.com/wp-content/uploads/2024/12/ou-nous-trouver_mobile2-scaled.jpg ; montre davantage l’enseigne que le bandeau horizontal précédent.

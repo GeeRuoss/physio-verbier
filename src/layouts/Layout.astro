@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import { heroImage, heroAlt } from "../data/media";
+import { heroImage, heroAlt, heroPosition } from "../data/media";
 import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
@@ -37,7 +37,7 @@ const descriptionsForClinic = (lang: Lang) => lang === "fr"
 const t = ui[lang];
 const pages: Page[] = ["home", "team", "services", "pricing", "location"];
 const canonical = new URL(href(lang, page), Astro.site);
-const socialImage = await getImage({ src: heroImage, width: 1200, height: 630, fit: "cover", format: "jpg", quality: 85 });
+const socialImage = await getImage({ src: heroImage, width: 1200, height: 630, fit: "cover", position: heroPosition, format: "jpg", quality: 85 });
 const socialImageUrl = new URL(socialImage.src, Astro.site);
 const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 ---
@@ -99,7 +99,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           openingHoursSpecification: [{
             "@type": "OpeningHoursSpecification",
             dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "08:30", closes: "18:30",
+            opens: "08:30", closes: "18:00",
           }],
           url: "https://physio-verbier.com",
           telephone: "+41275650660",
@@ -115,7 +115,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       ></script>
     )}
   </head>
-  <body data-page={page}>
+  <body data-page={page} id="top">
     <a class="skip-link" href="#main">
       {t.skip}
     </a>
@@ -168,10 +168,10 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           class="menu-toggle"
           aria-expanded="false"
           aria-controls="mobile-navigation"
+          aria-label={t.menu}
           data-open={t.menu}
           data-close={t.close}
         >
-          <span>{t.menu}</span>
           <span class="menu-lines" aria-hidden="true"></span>
         </button>
       </div>
@@ -186,9 +186,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
             href={href(lang, p)}
             aria-current={page === p ? "page" : undefined}
           >
-            <span class="nav-index">0{i + 1}</span>
             {t.nav[i]}
-            <Arrow />
           </a>
         ))}
         <a class="mobile-contact" href={href(lang, "contact")}>
@@ -264,10 +262,10 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           <a class="icon-link" href="mailto:info@physio-verbier.com"><ContactIcon name="mail" /><span>info@physio-verbier.com</span></a>
           <a class="icon-link" href={whatsapp} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon />
-            <span>WhatsApp · +41 (0)76 236 09 88</span>
+            <span>WhatsApp +41 (0)76 236 09 88</span>
           </a>
         </div>
-        <div>
+        <div class="footer-hours">
           <h2><ContactIcon name="clock" />{t.appointments}</h2>
           <p>{t.appointmentHours}</p>
           <p>{t.openYear}</p>
@@ -280,6 +278,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           <p>{t.daily}</p>
         </div>
       </div>
+      <div class="container footer-tools"><a class="back-to-top" href="#top"><Arrow /><span>{lang === "fr" ? "Revenir en haut" : "Back to top"}</span></a></div>
       <div class="container footer-bottom">
         <span>
           © {new Date().getFullYear()} PhysioVerbier
@@ -301,9 +300,14 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
       </div>
     </footer>
     <aside class="wa-widget" aria-label={lang === "fr" ? "Rendez-vous WhatsApp" : "WhatsApp appointments"}>
-      <a class="wa-float" href={href(lang, "contact") + "#reservation"} aria-label={lang === "fr" ? "Prendre rendez-vous sur WhatsApp" : "Book on WhatsApp"}><WhatsAppIcon /></a>
+      <a class="wa-float" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={lang === "fr" ? "Contacter le cabinet sur WhatsApp" : "Contact the clinic on WhatsApp"}><WhatsAppIcon /></a>
     </aside>
     <script>
+      document.querySelector<HTMLAnchorElement>(".back-to-top")?.addEventListener("click", event => {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+        document.querySelector<HTMLAnchorElement>(".brand")?.focus({ preventScroll: true });
+      });
       document.querySelectorAll<HTMLButtonElement>(".share-location").forEach(button => button.addEventListener("click", async () => {
         const url = new URL(button.dataset.url || "", location.origin).href;
         try { await navigator.clipboard.writeText(url); button.textContent = button.dataset.copied || "Lien copié"; }
@@ -343,8 +347,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
         if (!toggle || !menu) return;
         toggle.setAttribute("aria-expanded", String(open));
         menu.hidden = !open;
-        toggle.querySelector("span")!.textContent =
-          (open ? toggle.dataset.close : toggle.dataset.open) || "Menu";
+        toggle.setAttribute("aria-label", (open ? toggle.dataset.close : toggle.dataset.open) || "Menu");
       };
       toggle?.addEventListener("click", () =>
         setMenu(toggle.getAttribute("aria-expanded") !== "true"),
