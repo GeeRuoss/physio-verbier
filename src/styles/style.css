@@ -1,6 +1,6 @@
 /* === VARIABLES, BASE ET TYPOGRAPHIE === */
 :root {
-  --paper: #f4f0e8;
+  --paper: #f3eee4;
   --paper-light: #fbf9f4;
   --ink: #244b4e;
   --deep: #2c5d58;
@@ -1973,3 +1973,26 @@ body[data-page="contact"] .page-intro h1 em { margin-top: 1.5rem; }
 .footer-tools { display: flex; justify-content: flex-end; padding-bottom: 1.75rem; }
 .back-to-top { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 48px; padding: .65rem 1rem; border: 1px solid #ffffff60; border-radius: 999px; font-size: .95rem; }
 .back-to-top:hover { background: #ffffff15; }
+
+/* Retours V4 : boutons mobiles, cadrages et alignements. */
+html { background: var(--paper); color-scheme: light; }
+.mobile-nav .mobile-contact { display: flex; width: fit-content; max-width: 100%; margin: 1.5rem auto 0; padding: .8rem 1.2rem; justify-content: center; border: 1px solid var(--ink); border-radius: 999px; font-size: 1rem !important; text-align: center; }
+.welcome-section .care-grid > img { aspect-ratio: 1.12; object-position: center top; }
+.icon-link svg, .footer-grid .contact-icon, .footer-grid .icon-link svg { width: 26px; height: 26px; }
+.techniques { max-width: none; justify-self: stretch; }
+.price-card dd { font-size: 1.35rem; }
+.price-card dd > span { font-size: .9rem; }
+.practical-details { align-self: end; }
+.practical-grid img { width: 100%; }
+.practical-grid { padding-bottom: 3.5rem; }
+.appointment-contacts a { text-decoration: none; }
+.appointment-contacts a:hover { text-decoration: underline; }
+body[data-page="location"] .wide-photo img { aspect-ratio: auto; }
+body[data-page="location"] .find-us { max-width: var(--max-width); padding-top: clamp(3rem, 5vw, 4.5rem); }
+.location-info .lead { font-size: inherit; line-height: inherit; }
+body[data-page="contact"] .page-intro h1 em { margin-top: 2.25rem; }
+.booking { background: #d7e3d9; }
+@media (max-width: 767px) {
+ .footer-tools { justify-content: center; }
+ .booking-send { display: flex; width: fit-content; max-width: 100%; margin-inline: auto; text-align: center; }
+}

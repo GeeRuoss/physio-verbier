@@ -39,3 +39,7 @@ V3, 18 septembre 2026 :
 - `src/assets/verbier.jpg` et `src/assets/verbier-hiver.jpg` : les deux photographies remises par Guillermo le 18 septembre ; crédit visible Verbier 4Vallées conservé. Le cadrage de l’accueil et de l’aperçu social préserve les lettres « Verbier ».
 - `src/assets/equipe.jpg` : original 1900 × 759 de la photo de groupe Claudia Lamothe déjà créditée pour photo-15 ; variantes Astro jusqu’à la définition originale.
 - `src/assets/vitrine.jpg` : cadrage vertical existant du cabinet, https://physio-verbier.com/wp-content/uploads/2024/12/ou-nous-trouver_mobile2-scaled.jpg ; montre davantage l’enseigne que le bandeau horizontal précédent.
+
+V4, 23 septembre 2026 :
+- `src/assets/soin-genou.jpg` : variante originale 1214 × 1267 du soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_tablette.jpg ; logo du t-shirt conservé dans le cadrage. Variantes WebP générées par Astro.
+- Panorama hivernal de Clambin affiché dans son ratio d’origine pour conserver le crédit Verbier 4Vallées sur mobile et bureau.

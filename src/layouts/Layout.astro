@@ -47,7 +47,8 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f3eee4" />
     <meta name="description" content={description} />
     <meta
       name="robots"
@@ -189,7 +190,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
             {t.nav[i]}
           </a>
         ))}
-        <a class="mobile-contact" href={href(lang, "contact")}>
+        <a class="button button--small mobile-contact" href={href(lang, "contact")}>
           {t.book}
         </a>
       </nav>
@@ -224,7 +225,7 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
           <p>{t.disciplines.join(" · ")}</p>
           <div class="social-links">
             <a href={maps} target="_blank" rel="noopener noreferrer">
-              {lang === "fr" ? "Avis Google" : "Google reviews"}
+              <ContactIcon name="google" />{lang === "fr" ? "Avis Google" : "Google reviews"}
 
             </a>
             <a

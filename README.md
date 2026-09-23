@@ -93,3 +93,11 @@ Photo d’accueil et panorama hivernal fournis intégrés, lettres Verbier visib
 Horaires de rendez-vous jusqu’à 18h centralisés FR/EN et données structurées. Titres sans les points signalés, « Massage » au singulier, plans plus petits, pied de page réaligné et centré sur téléphone. Textes d’introduction des soins justifiés, techniques en gras, trait de la note supprimé. Montants réduits, cartes de tarifs uniformes, photo de salle recadrée à gauche et bas des informations pratiques aligné. Coordonnées cliquables dans l’accordéon de prise de rendez-vous. Formulaire turquoise clair, contacts centrés verticalement sur ordinateur, lien d’accès retiré du bloc contact.
 
 Chaque correction a été vérifiée sur mobile et bureau : 12 pages FR/EN à 320, 390, 768, 1100 et 1440 px ; captures relues, navigation, message de réservation, validation de date, retour en haut et liens directs contrôlés sans envoi. Build : 15 pages, liens et ressources internes vérifiés.
+
+## Retours V4 du cabinet, 23 septembre 2026
+
+Bouton de rendez-vous du menu mobile arrondi et centré, fond crème commun aux écrans, icônes légèrement réduites et ajout du G aux avis Google. Retour en haut et bouton de préparation WhatsApp centrés sur téléphone. Logo du t-shirt visible grâce à une variante originale de la photo du genou. Titres et ponctuation corrigés en français et anglais.
+
+Techniques alignées avec le texte des soins, montants réduits, accordéon aligné au bas de la photo et coordonnées sans soulignement permanent. Espacements augmentés autour des informations d’accès. Panorama de Clambin affiché sans couper son crédit ; adresse et rendez-vous alignés. Fond du préparateur éclairci et phrases d’introduction davantage espacées.
+
+Contrôles V4 : build et liens internes ; 12 pages FR/EN aux largeurs 320, 390, 768 et 1440 px, sans débordement. Captures mobile et bureau relues, alignements, boutons mobiles, menu, retour en haut et composition du message WhatsApp vérifiés sans envoi. L’image de partage reste synchronisée avec le panorama de l’accueil, inchangé dans cette révision.
