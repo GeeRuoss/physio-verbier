@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import { heroImage, heroAlt, heroPosition } from "../data/media";
+import { heroImage, heroAlt, heroPosition, directionsImage, directionsAlt } from "../data/media";
 import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
@@ -37,7 +37,9 @@ const descriptionsForClinic = (lang: Lang) => lang === "fr"
 const t = ui[lang];
 const pages: Page[] = ["home", "team", "services", "pricing", "location"];
 const canonical = new URL(href(lang, page), Astro.site);
-const socialImage = await getImage({ src: heroImage, width: 1200, height: 630, fit: "cover", position: heroPosition, format: "jpg", quality: 85 });
+const isDirections = page === "location";
+const socialAlt = isDirections ? directionsAlt[lang] : heroAlt[lang];
+const socialImage = await getImage({ src: isDirections ? directionsImage : heroImage, width: 1200, height: 630, fit: "cover", position: isDirections ? "center" : heroPosition, format: "jpg", quality: 85 });
 const socialImageUrl = new URL(socialImage.src, Astro.site);
 const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 ---
@@ -79,10 +81,10 @@ const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content={heroAlt[lang]} />
+    <meta property="og:image:alt" content={socialAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={socialImageUrl} />
-    <meta name="twitter:image:alt" content={heroAlt[lang]} />
+    <meta name="twitter:image:alt" content={socialAlt} />
     <meta property="og:locale" content={lang === "fr" ? "fr_CH" : "en_GB"} />
     {!preview && (
       <script

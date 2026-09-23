@@ -101,3 +101,7 @@ Bouton de rendez-vous du menu mobile arrondi et centré, fond crème commun aux 
 Techniques alignées avec le texte des soins, montants réduits, accordéon aligné au bas de la photo et coordonnées sans soulignement permanent. Espacements augmentés autour des informations d’accès. Panorama de Clambin affiché sans couper son crédit ; adresse et rendez-vous alignés. Fond du préparateur éclairci et phrases d’introduction davantage espacées.
 
 Contrôles V4 : build et liens internes ; 12 pages FR/EN aux largeurs 320, 390, 768 et 1440 px, sans débordement. Captures mobile et bureau relues, alignements, boutons mobiles, menu, retour en haut et composition du message WhatsApp vérifiés sans envoi. L’image de partage reste synchronisée avec le panorama de l’accueil, inchangé dans cette révision.
+
+### Aperçu de la page d’accès
+
+Les pages `localisation/` et `en/location/` disposent d’un visuel de partage « Find your way », avec l’adresse du cabinet, distinct du panorama des autres pages. Source dans `src/data/media.ts`, JPEG 1200 × 630 généré par Astro avec URL liée au contenu ; Open Graph et Twitter utilisent cette image et son texte alternatif. Composition avec le vrai logo et le plan existant, source éditable dans `design/directions-card.html` (export Chromium à 1200 × 630 après chargement des polices). Les boutons Google Maps, Apple Plans et Waze conservent leurs itinéraires réels.

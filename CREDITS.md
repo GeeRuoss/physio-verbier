@@ -43,3 +43,5 @@ V3, 18 septembre 2026 :
 V4, 23 septembre 2026 :
 - `src/assets/soin-genou.jpg` : variante originale 1214 × 1267 du soin du genou, https://physio-verbier.com/wp-content/uploads/2024/12/PHYSIO_VERBIER-102_tablette.jpg ; logo du t-shirt conservé dans le cadrage. Variantes WebP générées par Astro.
 - Panorama hivernal de Clambin affiché dans son ratio d’origine pour conserver le crédit Verbier 4Vallées sur mobile et bureau.
+
+- `src/assets/directions-social.png` : composition graphique du 23 septembre 2026, à partir du vrai logo, des polices du site et du plan OpenStreetMap déjà crédité ci-dessus. Source éditable : `design/directions-card.html`. Attribution cartographique conservée dans le visuel.
