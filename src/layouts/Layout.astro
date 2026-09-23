@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import { heroImage, heroAlt, heroPosition, directionsImage, directionsAlt } from "../data/media";
+import { heroImage, heroAlt, heroPosition, directionsImage, directionsAlt, homeSocialImages, homeSocialAlt } from "../data/media";
 import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
@@ -38,8 +38,10 @@ const t = ui[lang];
 const pages: Page[] = ["home", "team", "services", "pricing", "location"];
 const canonical = new URL(href(lang, page), Astro.site);
 const isDirections = page === "location";
-const socialAlt = isDirections ? directionsAlt[lang] : heroAlt[lang];
-const socialImage = await getImage({ src: isDirections ? directionsImage : heroImage, width: 1200, height: 630, fit: "cover", position: isDirections ? "center" : heroPosition, format: "jpg", quality: 85 });
+const isHome = page === "home";
+const socialSource = isDirections ? directionsImage : isHome ? homeSocialImages[lang] : heroImage;
+const socialAlt = isDirections ? directionsAlt[lang] : isHome ? homeSocialAlt[lang] : heroAlt[lang];
+const socialImage = await getImage({ src: socialSource, width: 1200, height: 630, fit: "cover", position: isDirections || isHome ? "center" : heroPosition, format: "jpg", quality: 85 });
 const socialImageUrl = new URL(socialImage.src, Astro.site);
 const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 ---

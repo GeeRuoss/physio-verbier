@@ -74,7 +74,7 @@ Vérification : build et contrôle des 15 pages ; 12 pages FR/EN parcourues dans
 
 ## Image de partage
 
-La photo d’accueil et l’image Open Graph proviennent de `src/data/media.ts`. Modifier cette source commune lors d’un changement de visuel. Astro génère l’aperçu JPEG 1200 × 630 et une URL liée au contenu de l’image. Vérifier l’aperçu publié ; les messages WhatsApp déjà envoyés peuvent conserver leur ancienne vignette.
+La photo d’accueil et les images Open Graph sont déclarées dans `src/data/media.ts`. Modifier cette source commune lors d’un changement de visuel. L’accueil dispose de compositions FR/EN dans `design/home-card.html`, qui réutilisent `src/assets/verbier.jpg` : réexporter les deux PNG à 1200 × 630 après un changement du panorama ou de la marque. Astro génère l’aperçu JPEG 1200 × 630 et une URL liée au contenu de l’image. Vérifier l’aperçu publié ; les messages WhatsApp déjà envoyés peuvent conserver leur ancienne vignette.
 
 ## Retours V2 du cabinet, 17 septembre 2026
 
@@ -105,3 +105,7 @@ Contrôles V4 : build et liens internes ; 12 pages FR/EN aux largeurs 320, 390, 
 ### Aperçu de la page d’accès
 
 Les pages `localisation/` et `en/location/` disposent d’un visuel de partage « Find your way », avec l’adresse du cabinet, distinct du panorama des autres pages. Source dans `src/data/media.ts`, JPEG 1200 × 630 généré par Astro avec URL liée au contenu ; Open Graph et Twitter utilisent cette image et son texte alternatif. Composition avec le vrai logo et le plan existant, source éditable dans `design/directions-card.html` (export Chromium à 1200 × 630 après chargement des polices). Les boutons Google Maps, Apple Plans et Waze conservent leurs itinéraires réels.
+
+### Aperçus de l’accueil
+
+Cartes FR/EN avec vrai logo, photo de Verbier entière et prestations. Source `design/home-card.html` : rendu français par défaut, anglais avec `?lang=en`, après chargement des polices dans Chromium à 1200 × 630. Exports `src/assets/home-social-fr.png` et `home-social-en.png`. Les pages d’accès conservent leur carte « Find your way ».

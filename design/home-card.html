@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>PhysioVerbier · Accueil</title>
+<style>
+@font-face{font-family:Montserrat;src:url('../node_modules/@fontsource/montserrat/files/montserrat-latin-500-normal.woff2');font-weight:500}
+@font-face{font-family:Manrope;src:url('../node_modules/@fontsource/manrope/files/manrope-latin-400-normal.woff2');font-weight:400}
+*{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f3eee4;color:#285957}
+.card{position:relative;width:1200px;height:630px;font-family:Manrope,sans-serif}
+.logo{position:absolute;left:54px;top:44px;width:265px;height:112px;object-fit:contain;object-position:left center}
+h1{position:absolute;left:54px;top:231px;margin:0;font:500 65px/1.08 Montserrat,sans-serif;letter-spacing:-3px}
+.services{position:absolute;left:54px;bottom:54px;margin:0;font-size:30px;line-height:1.4;letter-spacing:-.4px}
+.photo{position:absolute;left:561px;top:112px;width:599px;height:auto;border-radius:28px;display:block}
+</style>
+<main class="card">
+<img class="logo" src="../public/images/logo.png" alt="PhysioVerbier">
+<h1>Vos soins,<br>à Verbier.</h1>
+<p class="services">Physiothérapie<br>Massage · Sport</p>
+<img class="photo" src="../src/assets/verbier.jpg" alt="Panorama de Verbier, crédit Verbier 4Vallées">
+</main>
+<script>
+if(new URLSearchParams(location.search).get('lang')==='en'){
+ document.documentElement.lang='en';
+ document.querySelector('h1').innerHTML='Your care.<br>In Verbier.';
+ document.querySelector('.services').innerHTML='Physiotherapy<br>Massage · Sport';
+}
+</script>
+</html>

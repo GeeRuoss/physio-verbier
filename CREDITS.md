@@ -45,3 +45,5 @@ V4, 23 septembre 2026 :
 - Panorama hivernal de Clambin affiché dans son ratio d’origine pour conserver le crédit Verbier 4Vallées sur mobile et bureau.
 
 - `src/assets/directions-social.png` : composition graphique du 23 septembre 2026, à partir du vrai logo, des polices du site et du plan OpenStreetMap déjà crédité ci-dessus. Source éditable : `design/directions-card.html`. Attribution cartographique conservée dans le visuel.
+
+- `src/assets/home-social-{fr,en}.png` : compositions de partage de l’accueil, vrai logo et panorama de Verbier fourni le 18 septembre, crédit Verbier 4Vallées préservé. Source éditable : `design/home-card.html`, versions FR/EN.
