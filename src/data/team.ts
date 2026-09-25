@@ -49,7 +49,7 @@ export const teamMembers: TeamMember[] = [
     },
   },
   {
-    name: 'Naomie', therapist: false, image: naomie, position: 'top',
+    name: 'Naomie', therapist: false, image: naomie, position: 'center',
     role: { fr: '<p><strong>Accueil et secrétariat · Responsable administrative · Responsable des opérations</strong><br>Fr/En</p>', en: '<p><strong>Reception and secretarial support · Administration manager · Operations manager</strong><br>Fr/En</p>' },
     biography: {
       fr: `<p>Originaire de la région, Naomie aime beaucoup vivre et travailler à Verbier. Elle a d’abord étudié en Valais puis a rejoint l’Université de Neuchâtel. <strong>Après avoir réussi en 2018 son Bachelor of Arts en Lettres et Sciences Humaines (Langue Anglaise/Psychologie &amp; Education /Communication),</strong> elle est revenue en Valais.</p>

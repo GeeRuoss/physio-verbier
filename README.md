@@ -117,3 +117,9 @@ Cartes FR/EN avec vrai logo, photo de Verbier entière et prestations. Source `d
 Icône retirée uniquement du titre « Nous joindre par téléphone » du pied de page. Montants réduits à 18 px ; panneau d’informations pratiques centré par rapport à la photo, avec davantage d’espace avant les informations d’accès. Espaces égaux avant et après la grande photo de la page d’accès. Point final ajouté au titre de contact, fond du préparateur issu du vert du pied de page éclairci, bouton WhatsApp centré à toutes les largeurs. Fond crème vérifié sur téléphone et bureau.
 
 Contrôle point par point : 12 pages FR/EN à 320, 390, 768 et 1440 px, captures relues, portraits, cinq profils, quatre thérapeutes dans le formulaire, centrages, espacements, tarifs, langues, liens et message WhatsApp sans envoi. Le build contrôle 15 pages et 543 liens/ressources. Les cartes de partage accueil et accès restent dédiées et vérifiées.
+
+## Retours V6 du cabinet, 25 septembre 2026
+
+Boutons Google Maps, Apple Plans et Waze centrés sur téléphone. Portrait de Naomie centré à la source commune, sur l’accueil et la page équipe. La carte de la page d’accès partage désormais les colonnes et espacements du bloc téléphone : leurs bords gauches sont alignés, avec empilement cohérent sous 900 px. Titre du préparateur centré et texte sous le bouton WhatsApp justifié en FR/EN. Les valeurs et fonctions du formulaire restent identiques.
+
+Contrôles ciblés : pages accueil, équipe, accès et contact FR/EN à 320, 390, 768, 900 et 1440 px ; cadrages relus, centrage par rangée des trois liens Maps, alignement carte/téléphone, centrage du titre et du bouton, justification du texte, message WhatsApp sans envoi. Build : 15 pages et 543 liens/ressources. Aperçus de partage vérifiés.

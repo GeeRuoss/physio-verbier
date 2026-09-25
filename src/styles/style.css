@@ -2022,3 +2022,17 @@ body[data-page="location"] .find-us { padding-top: var(--location-photo-gap); al
  .team-card { grid-column: span 2; }
  .team-card:nth-last-child(2) { grid-column: 2 / span 2; }
 }
+
+/* Retours V6 : cadrage et alignements des informations d’accès. */
+.booking h2 { text-align: center; }
+.booking-note { text-align: justify; hyphens: auto; }
+body[data-page="location"] .find-us,
+body[data-page="location"] .location-info { grid-template-columns: minmax(0, 1fr); }
+body[data-page="location"] .map-art { justify-self: start; }
+@media (max-width: 767px) {
+ .map-apps { justify-content: center; }
+}
+@media (min-width: 900px) {
+ body[data-page="location"] .find-us,
+ body[data-page="location"] .location-info { grid-template-columns: 1.2fr 1fr; column-gap: 5rem; }
+}
