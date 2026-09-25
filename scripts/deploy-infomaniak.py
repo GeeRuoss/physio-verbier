@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Publish the checked static build over verified explicit TLS. No FTP password in files."""
+from concurrent.futures import ThreadPoolExecutor
 import ftplib
 import io
 import json
@@ -50,14 +51,17 @@ def publish(ftp, files, revision, verify):
     assert read_remote(ftp, '.htaccess') == files['.htaccess'], 'Apache configuration differs; review it separately'
     token = revision[:12] + '-' + str(time.time_ns())
     staged, previous, changed = {}, {}, []
+    listings = {}
     # Only read the old files we are replacing; retain old hashed assets for cached pages.
     try:
         for name, data in files.items():
             if name == '.htaccess':
                 continue
-            ensure_parent(ftp, name)
             parent = str(PurePosixPath(name).parent)
-            names = {n for n, facts in ftp.mlsd(parent) if facts.get('type') == 'file'}
+            if parent not in listings:
+                ensure_parent(ftp, name)
+                listings[parent] = {n for n, facts in ftp.mlsd(parent) if facts.get('type') == 'file'}
+            names = listings[parent]
             old = read_remote(ftp, name) if PurePosixPath(name).name in names else None
             if old == data:
                 continue
@@ -66,10 +70,12 @@ def publish(ftp, files, revision, verify):
             staged[name] = tmp
             ftp.storbinary('STOR ' + tmp, io.BytesIO(data))
             assert read_remote(ftp, tmp) == data, 'Upload checksum mismatch: ' + name
+        print('Staging verified; activating ' + str(len(staged)) + ' changed files.', flush=True)
         order = sorted(staged, key=lambda n: (2 if n == 'version.json' else 1 if n.endswith('.html') else 0, n))
         for name in order:
             changed.append(name)  # Include a rename whose acknowledgement is lost.
             ftp.rename(staged[name], name)
+        print('Activation complete; checking the public website.', flush=True)
         verify(revision, files)
     except Exception:
         failed = []
@@ -97,9 +103,10 @@ def publish(ftp, files, revision, verify):
 
 def verify_public(revision, files):
     # Confirm all new bytes, including both languages and social images, at the real domain.
-    for name, data in files.items():
+    def check_file(item):
+        name, data = item
         if name == '.htaccess':
-            continue
+            return
         route = '' if name == 'index.html' else name.removesuffix('index.html')
         for attempt in range(4):
             try:
@@ -111,6 +118,8 @@ def verify_public(revision, files):
                 if attempt == 3:
                     raise
                 time.sleep(3)
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        list(pool.map(check_file, files.items()))
 
 
 def build_files(root):
@@ -138,11 +147,13 @@ def main():
 
     for key in ['FTP_HOST', 'FTP_USERNAME', 'FTP_PASSWORD']:
         assert os.environ.get(key), 'Missing deployment setting: ' + key
+    print('Connecting to the dedicated FTPS account.', flush=True)
     with SecureFTP(context=ssl.create_default_context(), timeout=45) as ftp:
         ftp.connect(os.environ['FTP_HOST'], 21)
         ftp.login(os.environ['FTP_USERNAME'], os.environ['FTP_PASSWORD'])
         ftp.prot_p()
         ftp.cwd(directory)
+        print('Connection verified; preparing and checking ' + str(len(files)) + ' files.', flush=True)
         publish(ftp, files, revision, verify_public)
     print('Publication verified on the official domain; previous hashed assets retained.')
 
