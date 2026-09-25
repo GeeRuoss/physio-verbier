@@ -2,7 +2,8 @@
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import assert from "node:assert/strict";
-const dist = resolve("dist");
+const dist = resolve(process.env.CHECK_DIST || "dist");
+const preview = process.env.PUBLIC_PREVIEW !== "false";
 const base = (process.env.BASE_PATH || "/physio-verbier").replace(/\/$/, "");
 const htmlFiles = readdirSync(dist, { recursive: true }).filter((f) =>
   f.endsWith(".html"),
@@ -17,7 +18,11 @@ for (const file of htmlFiles) {
     `${file}: un seul h1`,
   );
   assert.match(html, /<html lang="(?:fr|en)"/);
-  assert.match(html, /<meta name="robots" content="noindex, nofollow"/);
+  assert.match(html, preview ? /<meta name="robots" content="noindex, nofollow"/ : /<meta name="robots" content="index, follow"/);
+  if (!preview) {
+    assert.doesNotMatch(html, /geeruoss\.github\.io|Cette version de présentation|About this preview/);
+    assert.match(html, /application\/ld\+json/);
+  }
   assert.match(html, /<link rel="canonical"/);
   assert.doesNotMatch(
     html,
@@ -54,8 +59,8 @@ for (const file of htmlFiles) {
 const fr = readFileSync(join(dist, "tarifs/index.html"), "utf8");
 for (const price of ["75", "150", "140", "225"]) assert.ok(fr.includes(price));
 assert.ok(
-  readFileSync(join(dist, "robots.txt"), "utf8").includes("Disallow: /"),
+  readFileSync(join(dist, "robots.txt"), "utf8").includes(preview ? "Disallow: /" : "Allow: /"),
 );
 console.log(
-  `OK : ${htmlFiles.length} pages, ${links} liens et ressources, FR/EN, formulaire sans envoi, prévisualisation noindex.`,
+  `OK : ${htmlFiles.length} pages, ${links} liens et ressources, FR/EN, formulaire sans envoi, ${preview ? "prévisualisation noindex" : "production indexable"}.`,
 );

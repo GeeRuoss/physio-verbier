@@ -35,6 +35,7 @@ export function getStaticPaths() {
   );
 }
 const { lang, page } = Astro.props as { lang: Lang; page: Page };
+const preview = import.meta.env.PUBLIC_PREVIEW !== "false";
 const t = ui[lang],
   c = content[lang];
 const titles = lang === "fr" ? {
@@ -507,12 +508,9 @@ const plain = (s: string) =>
       <article class="container legal-content prose">
         {lang === "fr" ? (
           <>
-            <h2>Cette version de présentation</h2>
+            <h2>{preview ? "Cette version de présentation" : "Le site PhysioVerbier"}</h2>
             <p>
-              Ce site est une première version destinée à présenter le futur
-              site de PhysioVerbier. Il est provisoirement hébergé sur GitHub
-              Pages. Il ne constitue pas un portail patient et ne permet pas de
-              transmettre de demande au cabinet sans ouvrir WhatsApp.
+              {preview ? "Cette version de présentation de PhysioVerbier est hébergée sur GitHub Pages." : "Ce site présente le cabinet PhysioVerbier, son équipe et ses prestations. Il est hébergé par Infomaniak Network SA, en Suisse."} Il ne constitue pas un portail patient. Le préparateur de rendez-vous ouvre WhatsApp ; vous choisissez ensuite d’envoyer le message au cabinet.
             </p>
             <h2>Le cabinet</h2>
             <p>
@@ -531,12 +529,9 @@ const plain = (s: string) =>
             <h2>Préparer un rendez-vous</h2><p>Vos choix et votre prénom servent à préparer un message dans votre navigateur, sans enregistrement sur le site. Au clic sur « Continuer sur WhatsApp », ces informations sont transmises à WhatsApp dans le lien prérempli. Vous pouvez modifier le message avant de l’envoyer au cabinet. Le rendez-vous est confirmé ensuite par le cabinet. Ne renseignez pas de données médicales.</p>
             <h2>Hébergement et navigation</h2>
             <p>
-              Cette prévisualisation utilise GitHub Pages, et non l’hébergement
-              définitif Infomaniak. Le chargement du site communique
-              nécessairement des informations techniques à l’hébergeur,
-              notamment l’adresse IP. GitHub décrit son traitement dans sa{" "}
+              {preview ? "Cette prévisualisation utilise GitHub Pages." : "Ce site est hébergé par Infomaniak."} Le chargement des pages communique des informations techniques à l’hébergeur, notamment votre adresse IP. Consultez sa{" "}
               <a
-                href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement"
+                href={preview ? "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement" : "https://www.infomaniak.com/fr/cgv/politique-de-confidentialite"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -556,12 +551,8 @@ const plain = (s: string) =>
               confidentialité s’appliquent alors. Évitez de transmettre des
               renseignements médicaux par les canaux de contact généraux.
             </p>
-            <h2>Avant la mise en service définitive</h2>
-            <p>
-              Les modalités du formulaire définitif, les prestataires, les accès
-              et les durées de conservation seront définis avec le cabinet et
-              cette page sera actualisée avant son activation.
-            </p>
+            <h2>Questions concernant vos données</h2>
+            <p>Pour toute question sur vos données ou sur les informations transmises au cabinet, contactez PhysioVerbier à <a href="mailto:info@physio-verbier.com">info@physio-verbier.com</a>.</p>
             <h2>Images et contenus</h2>
             <p>
               Les textes et photographies proviennent du site actuel de
@@ -572,11 +563,9 @@ const plain = (s: string) =>
           </>
         ) : (
           <>
-            <h2>About this preview</h2>
+            <h2>{preview ? "About this preview" : "About this website"}</h2>
             <p>
-              This is a first version of the future PhysioVerbier website,
-              temporarily hosted on GitHub Pages. It is not a patient portal and
-              prepares appointment requests that visitors can send through WhatsApp.
+              {preview ? "This preview of PhysioVerbier is hosted on GitHub Pages." : "This website presents the PhysioVerbier clinic, its team and services. It is hosted by Infomaniak Network SA in Switzerland."} It is not a patient portal. The appointment helper opens WhatsApp; you then choose whether to send the message to the clinic.
             </p>
             <h2>The clinic</h2>
             <p>
@@ -595,15 +584,13 @@ const plain = (s: string) =>
             <h2>Appointment requests</h2><p>Your choices and first name prepare a message in your browser without being stored by this website. Clicking “Continue on WhatsApp” passes this information to WhatsApp in a prefilled link. You can edit the message before sending it to the clinic. The clinic confirms your appointment separately. Do not enter medical information.</p>
             <h2>Hosting and browsing</h2>
             <p>
-              This preview uses GitHub Pages, not the final Infomaniak hosting.
-              Loading the site necessarily communicates technical information,
-              including your IP address, to the hosting provider. See the{" "}
+              {preview ? "This preview uses GitHub Pages." : "This website is hosted by Infomaniak."} Loading the site communicates technical information, including your IP address, to the hosting provider. See its{" "}
               <a
-                href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+                href={preview ? "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" : "https://www.infomaniak.com/en/legal/confidentiality-policy"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub privacy statement
+                privacy statement
               </a>
               .
             </p>
@@ -618,12 +605,8 @@ const plain = (s: string) =>
               Please avoid sharing medical information through general contact
               channels.
             </p>
-            <h2>Before the final launch</h2>
-            <p>
-              The final form’s processing, providers, access permissions and
-              retention periods will be agreed with the clinic and this page
-              updated before the form is enabled.
-            </p>
+            <h2>Questions about your data</h2>
+            <p>For questions about your data or information sent to the clinic, contact PhysioVerbier at <a href="mailto:info@physio-verbier.com">info@physio-verbier.com</a>.</p>
             <h2>Images and content</h2>
             <p>
               Text and photography are taken from the existing PhysioVerbier

@@ -1,3 +1,12 @@
-# À intégrer au .htaccess Infomaniak lors de la bascule, après les tests de staging.
+# Production statique PhysioVerbier : installer à la racine du dossier publié.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^physio-verbier\.com$ [NC]
+RewriteRule ^ https://physio-verbier.com%{REQUEST_URI} [R=301,L,NE]
+
 Redirect 301 /mentions-legales-et-politique-de-confidentialite/ https://physio-verbier.com/confidentialite/
 Redirect 301 /en/privacy-policy/ https://physio-verbier.com/en/privacy/

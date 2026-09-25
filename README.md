@@ -44,13 +44,11 @@ SITE_URL=https://physio-verbier.com BASE_PATH=/ PUBLIC_PREVIEW=false npm run bui
 
 Le contenu de `dist/` peut être servi par un hébergement web statique ou PHP. Le paramètre `PUBLIC_PREVIEW=false` retire la mention de prévisualisation, active l’indexation et les données structurées. Il ne branche pas le formulaire.
 
-Avant la bascule finale :
+Déployer uniquement les fichiers compilés de `dist/` et `deployment/infomaniak.htaccess` (renommé `.htaccess`) dans un dossier distinct de l’ancien WordPress. Vérifier le build avec `BASE_PATH=/ PUBLIC_PREVIEW=false npm run check`. Le préparateur WhatsApp fonctionne dans le navigateur ; aucun endpoint de formulaire ou mot de passe SMTP n’est nécessaire.
 
-1. Valider contenus, équipe, tarifs, droits des images et direction graphique avec le cabinet.
-2. Confirmer la raison sociale, les mentions légales et le traitement des données avec le cabinet.
-3. Configurer et tester le traitement réel du formulaire chez Infomaniak, avec validation serveur, anti-spam, transport chiffré, accès limités, et politique de conservation. Aucun secret n’est à mettre dans le frontend ou GitHub.
-4. Mettre à jour les textes de confidentialité pour refléter l’hébergement et les traitements réellement utilisés.
-5. Vérifier le site sur Infomaniak, conserver les anciennes URLs, puis seulement basculer le domaine après accord. Aucune modification DNS effectuée pour cette prévisualisation.
+Le build de production adapte la page de confidentialité à Infomaniak et active l’indexation. Le miroir GitHub conserve ses adresses, sa mention d’hébergement et son `noindex`. La configuration Apache force le domaine HTTPS, sert la page 404 et préserve les anciennes adresses légales par redirection.
+
+Conserver l’ancien dossier du site et ses bases de données pour le retour arrière ; ne modifier le dossier publié qu’après contrôle de l’archive transférée. Vérifier ensuite le domaine réel, les routes FR/EN, les médias, le menu mobile, le préparateur WhatsApp sans envoi, la 404 et les redirections.
 
 ## État des avis
 
