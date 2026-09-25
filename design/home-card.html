@@ -15,14 +15,14 @@ h1{position:absolute;left:54px;top:231px;margin:0;font:500 65px/1.08 Montserrat,
 <main class="card">
 <img class="logo" src="../public/images/logo.png" alt="PhysioVerbier">
 <h1>Vos soins,<br>à Verbier.</h1>
-<p class="services">Physiothérapie<br>Massage · Sport</p>
+<p class="services">Physiothérapie<br>Massages et bien-être</p>
 <img class="photo" src="../src/assets/verbier.jpg" alt="Panorama de Verbier, crédit Verbier 4Vallées">
 </main>
 <script>
 if(new URLSearchParams(location.search).get('lang')==='en'){
  document.documentElement.lang='en';
  document.querySelector('h1').innerHTML='Your care.<br>In Verbier.';
- document.querySelector('.services').innerHTML='Physiotherapy<br>Massage · Sport';
+ document.querySelector('.services').innerHTML='Physiotherapy<br>Massage &amp; wellbeing';
 }
 </script>
 </html>

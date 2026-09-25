@@ -21,6 +21,6 @@ export const directionsAlt = {
 
 export const homeSocialImages = { fr: homeFrenchImage, en: homeEnglishImage };
 export const homeSocialAlt = {
-  fr: "PhysioVerbier : vos soins à Verbier. Physiothérapie, massage et sport. Panorama de Verbier.",
-  en: "PhysioVerbier: your care in Verbier. Physiotherapy, massage and sport. Panorama of Verbier.",
+  fr: "PhysioVerbier : vos soins à Verbier. Physiothérapie, massages et bien-être. Panorama de Verbier.",
+  en: "PhysioVerbier: your care in Verbier. Physiotherapy, massage and wellbeing. Panorama of Verbier.",
 };
