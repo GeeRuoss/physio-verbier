@@ -1,20 +1,14 @@
 ---
-import Photo from "./Photo.astro";
-import { href, ui, therapists } from "../data/site";
+import TeamPortrait from './TeamPortrait.astro';
+import { href } from '../data/site';
+import { teamMembers } from '../data/team';
 const { lang } = Astro.props;
-const t = ui[lang];
-const names = therapists;
 ---
-
 <div class="team-grid">
-  {names.map((name, i) => (
-    <a class="team-card" href={`${href(lang, "team")}#${name.toLowerCase()}`}>
-      <div class="team-card__photo">
-        <Photo id={17 + i} alt={name} sizes="(min-width: 768px) 33vw, 90vw" />
-      </div>
-      <div class="team-card__label">
-        <h3>{name}</h3>
-      </div>
+  {teamMembers.map(member => (
+    <a class="team-card" href={`${href(lang, 'team')}#${member.name.toLowerCase()}`}>
+      <div class="team-card__photo"><TeamPortrait member={member} sizes="(min-width: 1100px) 28vw, (min-width: 768px) 40vw, 90vw" /></div>
+      <div class="team-card__label"><h3>{member.name}</h3></div>
     </a>
   ))}
 </div>

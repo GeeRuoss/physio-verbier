@@ -14,6 +14,8 @@ import Layout from "../layouts/Layout.astro";
 import Arrow from "../components/Arrow.astro";
 import Photo from "../components/Photo.astro";
 import TeamCards from "../components/TeamCards.astro";
+import TeamPortrait from "../components/TeamPortrait.astro";
+import { teamMembers } from "../data/team";
 import content from "../data/content.json";
 import {
   routes,
@@ -21,7 +23,6 @@ import {
   ui,
   maps,
   whatsapp,
-  therapists,
   type Lang,
   type Page,
 } from "../data/site";
@@ -55,7 +56,7 @@ const titles = lang === "fr" ? {
 };
 const descriptions = lang === "fr" ? {
   home: "Physiothérapie, massages et coaching sportif à Verbier. Soins personnalisés au cabinet, Route de Verbier Station 74. Découvrez l’équipe et prenez rendez-vous.",
-  team: "Rencontrez Hannah et Sybille, l’équipe de PhysioVerbier. Découvrez leurs parcours et leur approche des soins au cabinet de Verbier.",
+  team: "Rencontrez Hannah, Sybille, Julie, Tom et Naomie, l’équipe de PhysioVerbier. Découvrez leurs parcours et leur approche des soins au cabinet de Verbier.",
   services: "Découvrez les soins de PhysioVerbier : physiothérapie, massages et coaching sportif. Un accompagnement adapté à vos besoins au cœur de Verbier.",
   pricing: "Consultez les tarifs de physiothérapie, massages et coaching sportif chez PhysioVerbier et les informations utiles pour préparer votre première visite.",
   location: "Retrouvez PhysioVerbier à la Route de Verbier Station 74, 1936 Verbier. Adresse, itinéraire et horaires du cabinet de physiothérapie.",
@@ -63,7 +64,7 @@ const descriptions = lang === "fr" ? {
   privacy: "Informations légales, confidentialité et traitement des données sur le site PhysioVerbier.",
 } : {
   home: "Physiotherapy, massage and personal training in Verbier. Personalised care at Route de Verbier Station 74. Meet the team and book an appointment.",
-  team: "Meet Hannah and Sybille at PhysioVerbier. Discover their backgrounds and approach to personalised care at our Verbier clinic.",
+  team: "Meet Hannah, Sybille, Julie, Tom and Naomie at PhysioVerbier. Discover their backgrounds and approach to personalised care at our Verbier clinic.",
   services: "Explore physiotherapy, massage and personal training at PhysioVerbier. Personalised care adapted to your needs in the heart of Verbier.",
   pricing: "See physiotherapy, massage and personal training prices at PhysioVerbier and find practical information for your first visit.",
   location: "Find PhysioVerbier at Route de Verbier Station 74, 1936 Verbier. Clinic address, directions and opening hours.",
@@ -71,7 +72,6 @@ const descriptions = lang === "fr" ? {
   privacy: "Legal information, privacy and data processing on the PhysioVerbier website.",
 };
 const description = descriptions[page];
-const names = therapists;
 const ids = ["physiotherapie", "massages", "coaching"];
 const plain = (s: string) =>
   s
@@ -203,26 +203,26 @@ const plain = (s: string) =>
       </div>
       <nav
         class="anchor-nav container"
-        aria-label={lang === "fr" ? "Les thérapeutes" : "Our therapists"}
+        aria-label={lang === "fr" ? "L’équipe" : "Our team"}
       >
-        {names.map((name) => (
+        {teamMembers.map(({ name }) => (
           <a href={`#${name.toLowerCase()}`}>
             {name}
           </a>
         ))}
       </nav>
       <div class="container team-profiles">
-        {names.map((name, i) => (
-          <section id={name.toLowerCase()} class="profile">
+        {teamMembers.map((member) => (
+          <section id={member.name.toLowerCase()} class="profile">
             <div class="profile-photo">
-              <Photo id={17 + i} alt={name} />
+              <TeamPortrait member={member} />
             </div>
             <div class="profile-copy">
-              <h2>{name}</h2>
-              <div class="profile-role" set:html={c.team[2 + i * 3]} />
-              <div class="prose biography" set:html={c.team[3 + i * 3]} />
+              <h2>{member.name}</h2>
+              <div class="profile-role" set:html={member.role[lang]} />
+              <div class="prose biography" set:html={member.biography[lang]} />
               <a class="text-link" href={href(lang, "contact")}>
-                {t.book}
+                {member.therapist ? t.book : lang === "fr" ? "Contacter le cabinet" : "Contact the clinic"}
               </a>
             </div>
           </section>
@@ -391,7 +391,7 @@ const plain = (s: string) =>
         <p>{t.hannahNote}</p>
       </div>
       <section class="section container practical-grid">
-        <div>
+        <div class="practical-visual">
           <h2>{t.practicalEm}</h2>
           <Photo
             id={22}

@@ -1,3 +1,4 @@
+import { teamMembers } from "./team";
 export type Lang = "fr" | "en";
 export type Page =
   "home" | "team" | "services" | "pricing" | "location" | "contact" | "privacy";
@@ -27,7 +28,7 @@ export const asset = (file: string) => `${base}/${file}`;
 export const maps =
   "https://www.google.com/maps/search/?api=1&query=PhysioVerbier%20Route%20de%20Verbier%20Station%2074%201936%20Verbier";
 export const mapDirections = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("PhysioVerbier, Route de Verbier Station 74, 1936 Verbier, Switzerland");
-export const therapists = ["Hannah", "Sybille"];
+export const therapists = teamMembers.filter(member => member.therapist).map(member => member.name);
 export const whatsapp = "https://wa.me/41762360988";
 export const ui = {
   fr: {
@@ -115,7 +116,7 @@ export const ui = {
       "Drainage lymphatique",
     ],
     contactTitle: "Nous sommes heureux de vous accompagner pour que vous retrouviez votre bien-être.",
-    contactEm: "Nous nous réjouissons de vous accueillir chez PhysioVerbier",
+    contactEm: "Nous nous réjouissons de vous accueillir chez PhysioVerbier.",
     contactIntro:
       "Pour un rendez-vous ou une question pratique, choisissez le moyen qui vous convient. Nous serons heureux de vous accompagner.",
     call: "Nous appeler",
@@ -227,7 +228,7 @@ export const ui = {
       "Lymphatic drainage",
     ],
     contactTitle: "We are happy to support you in restoring your well-being.",
-    contactEm: "We look forward to welcoming you to PhysioVerbier",
+    contactEm: "We look forward to welcoming you to PhysioVerbier.",
     contactIntro:
       "For an appointment or a practical question, get in touch in the way that suits you. We look forward to helping you.",
     call: "Call us",

@@ -1996,3 +1996,29 @@ body[data-page="contact"] .page-intro h1 em { margin-top: 2.25rem; }
  .footer-tools { justify-content: center; }
  .booking-send { display: flex; width: fit-content; max-width: 100%; margin-inline: auto; text-align: center; }
 }
+
+/* Retours V5 : équipe complète et réglages vérifiés à chaque largeur. */
+.profile-role { font-size: 1.125rem; }
+.footer-reception-title { padding-left: 2.475rem; }
+.price-card dd { font-size: 1.125rem; letter-spacing: 0; }
+.price-card dd > span { font-size: .9rem; }
+.practical-grid { padding-bottom: clamp(4.5rem, 7vw, 6rem); }
+.practical-details { align-self: center; }
+body[data-page="location"] { --location-photo-gap: clamp(3.5rem, 6vw, 6rem); }
+body[data-page="location"] .page-intro { padding-bottom: var(--location-photo-gap); }
+body[data-page="location"] .page-intro h1 { margin-bottom: 0; }
+body[data-page="location"] .find-us { padding-top: var(--location-photo-gap); align-items: start; }
+.booking { background: color-mix(in srgb, var(--deep) 30%, var(--paper) 70%); }
+.booking-send { display: flex; width: fit-content; max-width: 100%; margin-inline: auto; justify-content: center; text-align: center; }
+@media (min-width: 900px) {
+ .practical-grid { align-items: center; column-gap: 4rem; row-gap: 2rem; }
+ .practical-visual { display: contents; }
+ .practical-visual h2 { grid-column: 1; grid-row: 1; margin-bottom: 0; }
+ .practical-visual img { grid-column: 1; grid-row: 2; }
+ .practical-details { grid-column: 2; grid-row: 2; }
+}
+@media (min-width: 1100px) {
+ .team-grid { max-width: 1200px; grid-template-columns: repeat(6,minmax(0,1fr)); }
+ .team-card { grid-column: span 2; }
+ .team-card:nth-last-child(2) { grid-column: 2 / span 2; }
+}

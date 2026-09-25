@@ -47,3 +47,7 @@ V4, 23 septembre 2026 :
 - `src/assets/directions-social.png` : composition graphique du 23 septembre 2026, à partir du vrai logo, des polices du site et du plan OpenStreetMap déjà crédité ci-dessus. Source éditable : `design/directions-card.html`. Attribution cartographique conservée dans le visuel.
 
 - `src/assets/home-social-{fr,en}.png` : compositions de partage de l’accueil, vrai logo et panorama de Verbier fourni le 18 septembre, crédit Verbier 4Vallées préservé. Source éditable : `design/home-card.html`, versions FR/EN.
+
+V5, 25 septembre 2026 :
+- Portraits de Julie Maitrot, Tom Boulisset et Naomie Volluz remis par Guillermo pour PhysioVerbier. Copies web optimisées sans métadonnées EXIF ; les originaux restent hors du dépôt. Cadrages carrés et variantes WebP générés par Astro, dont le recadrage central de Tom qui exclut les bandes noires du fichier fourni.
+- Présentations françaises fournies par le cabinet ; traductions anglaises pour les pages correspondantes. Aucune qualification ni expérience ajoutée aux documents transmis.

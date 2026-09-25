@@ -109,3 +109,11 @@ Les pages `localisation/` et `en/location/` disposent d’un visuel de partage �
 ### Aperçus de l’accueil
 
 Cartes FR/EN avec vrai logo, photo de Verbier entière et prestations. Source `design/home-card.html` : rendu français par défaut, anglais avec `?lang=en`, après chargement des polices dans Chromium à 1200 × 630. Exports `src/assets/home-social-fr.png` et `home-social-en.png`. Les pages d’accès conservent leur carte « Find your way ».
+
+## Retours V5 du cabinet, 25 septembre 2026
+
+Équipe complétée avec Julie, Tom et Naomie sur l’accueil et dans les biographies FR/EN. Les personnes, portraits et textes sont centralisés dans `src/data/team.ts` ; la liste de réservation en dérive en excluant l’administration. Les langues de Hannah et Sybille commencent par le français. Les rôles ont la même taille de texte que les biographies.
+
+Icône retirée uniquement du titre « Nous joindre par téléphone » du pied de page. Montants réduits à 18 px ; panneau d’informations pratiques centré par rapport à la photo, avec davantage d’espace avant les informations d’accès. Espaces égaux avant et après la grande photo de la page d’accès. Point final ajouté au titre de contact, fond du préparateur issu du vert du pied de page éclairci, bouton WhatsApp centré à toutes les largeurs. Fond crème vérifié sur téléphone et bureau.
+
+Contrôle point par point : 12 pages FR/EN à 320, 390, 768 et 1440 px, captures relues, portraits, cinq profils, quatre thérapeutes dans le formulaire, centrages, espacements, tarifs, langues, liens et message WhatsApp sans envoi. Le build contrôle 15 pages et 543 liens/ressources. Les cartes de partage accueil et accès restent dédiées et vérifiées.
