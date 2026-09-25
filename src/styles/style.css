@@ -1737,9 +1737,9 @@ section[id] {
   }
 }
 @media (min-width: 1100px) and (max-width: 1250px) {
-  .header-book {
-    display: none;
-  }
+  .site-header .brand { width: 200px; }
+  .site-header .desktop-nav { gap: .75rem; }
+  .site-header .desktop-nav a { font-size: 1rem; }
 }
 
 /* Contact direct et accès au cabinet */
@@ -1855,7 +1855,6 @@ main img, .hero-photo-wrap, .team-card__photo { border-radius: var(--radius); }
  .desktop-nav { gap: 1.1rem; }
  .header-book { font-size: 1rem; }
 }
-@media (min-width: 1100px) and (max-width: 1340px) { .header-book { display: none; } }
 @media (max-width: 420px) { .brand { width: 175px; } .discipline-band { font-size: .95rem; padding-inline: var(--gutter); } }
 @media (max-width: 360px) {
  .menu-toggle { min-width: 44px; justify-content: center; }
@@ -1918,7 +1917,6 @@ body[data-page="contact"] .page-intro h1 br { display: none; }
  .desktop-nav a { font-size: 1.2rem; }
  .desktop-nav { gap: clamp(.85rem, 1.3vw, 1.4rem); }
 }
-@media (min-width: 1100px) and (max-width: 1499px) { .header-book { display: none; } }
 @media (max-width: 700px) {
  .contact-grid { gap: 3rem; }
  .anchor-nav { gap: .5rem 1.5rem; }
