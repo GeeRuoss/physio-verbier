@@ -2036,3 +2036,43 @@ body[data-page="location"] .map-art { justify-self: start; }
  body[data-page="location"] .find-us,
  body[data-page="location"] .location-info { grid-template-columns: 1.2fr 1fr; column-gap: 5rem; }
 }
+
+/* Frame an off-centre face without moving the portrait border or changing the photo. */
+.portrait-frame {
+  display: block;
+  position: relative;
+  aspect-ratio: 0.94;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.portrait-frame__crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.portrait-frame .portrait-frame__crop img {
+  position: absolute;
+  width: 125%;
+  height: 125%;
+  max-width: none;
+  left: -24.5%;
+  top: -24.5%;
+  object-fit: cover;
+  aspect-ratio: auto;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+}
+.profile-photo .portrait-frame {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 7px solid var(--green);
+}
+.profile-photo .portrait-frame__crop { inset: 7px; }
+@media (min-width: 768px) {
+  .profile-photo .portrait-frame { aspect-ratio: 0.9; }
+}
+@media (max-width: 420px) {
+  .team-card__photo .portrait-frame { aspect-ratio: 1; }
+}

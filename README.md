@@ -123,3 +123,5 @@ Contrôle point par point : 12 pages FR/EN à 320, 390, 768 et 1440 px, captures
 Boutons Google Maps, Apple Plans et Waze centrés sur téléphone. Portrait de Naomie centré à la source commune, sur l’accueil et la page équipe. La carte de la page d’accès partage désormais les colonnes et espacements du bloc téléphone : leurs bords gauches sont alignés, avec empilement cohérent sous 900 px. Titre du préparateur centré et texte sous le bouton WhatsApp justifié en FR/EN. Les valeurs et fonctions du formulaire restent identiques.
 
 Contrôles ciblés : pages accueil, équipe, accès et contact FR/EN à 320, 390, 768, 900 et 1440 px ; cadrages relus, centrage par rangée des trois liens Maps, alignement carte/téléphone, centrage du titre et du bouton, justification du texte, message WhatsApp sans envoi. Build : 15 pages et 543 liens/ressources. Aperçus de partage vérifiés.
+
+Ajustement du portrait de Naomie après contrôle visuel : cadrage du visage légèrement rapproché et décalé dans le composant commun, sans modifier la photo originale. Accueil et équipe FR/EN vérifiés à 320, 390, 768 et 1440 px ; cadre et bordure conservés.
