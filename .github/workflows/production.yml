@@ -1,0 +1,73 @@
+name: Publier le site officiel
+on:
+  workflow_dispatch:
+    inputs:
+      revision:
+        description: Commit complet de main validé sur mobile et ordinateur
+        required: true
+        type: string
+      publish:
+        description: Je demande la mise en ligne sur physio-verbier.com
+        required: true
+        default: false
+        type: boolean
+permissions:
+  contents: read
+concurrency:
+  group: infomaniak-production
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && inputs.publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier la version demandée
+        env:
+          REQUESTED: ${{ inputs.revision }}
+        run: test "$REQUESTED" = "$GITHUB_SHA"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:deployment
+      - run: npm run build
+        env:
+          SITE_URL: https://physio-verbier.com
+          BASE_PATH: /
+          PUBLIC_PREVIEW: "false"
+      - run: npm run check
+        env:
+          BASE_PATH: /
+          PUBLIC_PREVIEW: "false"
+      - name: Préparer la livraison
+        run: |
+          cp deployment/infomaniak.htaccess dist/.htaccess
+          node --input-type=module -e 'import {writeFileSync} from "node:fs"; writeFileSync("dist/version.json", JSON.stringify({revision:process.env.GITHUB_SHA,date:new Date().toISOString().slice(0,10),site:"https://physio-verbier.com"})+"\n")'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-production
+          path: dist/
+          include-hidden-files: true
+          retention-days: 30
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://physio-verbier.com/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-production
+          path: dist/
+      - name: Publier et vérifier Infomaniak
+        env:
+          FTP_HOST: ${{ vars.FTP_HOST }}
+          FTP_USERNAME: ${{ vars.FTP_USERNAME }}
+          FTP_DIRECTORY: ${{ vars.FTP_DIRECTORY }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          DEPLOY_REVISION: ${{ github.sha }}
+        run: python3 scripts/deploy-infomaniak.py

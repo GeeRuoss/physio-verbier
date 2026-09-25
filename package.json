@@ -7,7 +7,9 @@
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
-    "check": "node scripts/check-site.mjs"
+    "check": "node scripts/check-site.mjs",
+    "publish": "node scripts/publish.mjs",
+    "test:deployment": "python3 -m unittest discover -s scripts/tests -p \"test_*.py\""
   },
   "dependencies": {
     "@fontsource/manrope": "^5.2.6",

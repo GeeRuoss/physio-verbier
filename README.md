@@ -34,7 +34,41 @@ Le préparateur de rendez-vous compose localement un message (soin, préférence
 
 Google Maps et les réseaux sociaux sont des liens externes. Aucun iframe, script de suivi ni cookie applicatif. Les polices sont servies localement.
 
-## Préparer Infomaniak
+## Publication du site officiel
+
+Les modifications se font et se vérifient en local, sur mobile et ordinateur. Un `git push` ne publie que l’aperçu GitHub. La production Infomaniak exige une demande explicite distincte.
+
+Après validation du client, enregistrer les changements dans un commit sur `main`, puis :
+
+```sh
+npm run publish
+```
+
+Cette commande pousse `main` et déclenche « Publier le site officiel ». Elle nécessite GitHub CLI (`gh`) connecté à un compte ayant le droit d’écriture sur le dépôt. Claude peut la lancer uniquement après une demande de mise en ligne. Elle ne prétend pas que la publication est terminée : attendre le succès du workflow et vérifier le domaine officiel. Les commits ordinaires et les demandes de modification n’autorisent pas cette commande.
+
+Alternative dans GitHub Actions : sélectionner « Publier le site officiel », `Run workflow`, branche `main`, indiquer le SHA complet du commit validé et cocher la demande de publication. Le workflow refuse un autre commit ou une autre branche. Une publication à la fois ; une nouvelle demande n’interrompt pas un transfert en cours.
+
+### Accès de publication
+
+Environnement GitHub `production`, réservé à `main` :
+
+- Variables `FTP_HOST`, `FTP_USERNAME`, `FTP_DIRECTORY`, renseignées depuis les paramètres Infomaniak constatés.
+- Secret `FTP_PASSWORD` conservé dans l’environnement GitHub uniquement ; jamais dans le dépôt, la conversation ou le navigateur du site. Un compte FTP dédié, sans SSH, a été créé pour cette automatisation. Ne pas réinitialiser l’accès général existant.
+- Le compte dédié est restreint au dossier réellement servi par le domaine. `FTP_DIRECTORY=/` correspond à cette racine restreinte ; le script refuse une autre valeur. Tout changement de dossier publié dans Infomaniak impose de revoir le compte FTP dédié.
+
+Connexion TLS et restriction au site vérifiées lors de la configuration ; le succès d’une publication se constate dans GitHub Actions et sur le domaine réel. Le code seul ne prouve pas une livraison.
+
+### Garanties et limites
+
+Le workflow compile pour le domaine final, contrôle les pages et liens, conserve un artefact de livraison 30 jours, puis transfère via FTP explicite sur TLS avec vérification du certificat. Il vérifie le site cible et exige une configuration Apache identique avant toute écriture. Il transfère et relit les nouveaux fichiers avant activation, publie les ressources avant le HTML et le marqueur de version en dernier. Il conserve les anciennes ressources avec empreinte pour les pages encore en cache ; aucun nettoyage global du serveur.
+
+Chaque fichier est remplacé par renommage, mais la livraison complète n’est pas une transaction atomique : quelques pages peuvent temporairement appartenir à deux versions pendant le transfert. Si l’activation ou le contrôle public échoue, le script tente de rétablir les fichiers précédents. Une perte complète de connexion peut empêcher cette restauration ; le workflow reste alors en échec et nécessite une intervention. Les archives des livraisons manuelles antérieures restent disponibles dans les releases GitHub pour le retour arrière. Aucun changement DNS, email, WordPress ou base de données.
+
+Contrôles automatiques du déploiement : `npm run test:deployment` couvre les fichiers corrompus, le mauvais site cible, l’ordre de publication et la restauration après échec. Après succès, le script compare chaque fichier publié au build sur le domaine réel. Les vérifications visuelles mobile/bureau restent à faire avant la demande de publication.
+
+Références : [transfert TLS Infomaniak](https://www.infomaniak.com/fr/support/faq/446/comprendre-les-protocoles-de-transfert-web) et [environnements GitHub Actions](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments).
+
+## Livraison manuelle Infomaniak (secours)
 
 Pour compiler à la racine du domaine :
 

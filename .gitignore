@@ -16,3 +16,6 @@ id_rsa*
 credentials.json
 .qa/
 !.github/workflows/secrets-check.yml
+
+__pycache__/
+*.pyc
