@@ -7,7 +7,7 @@ const { member, sizes = '(min-width: 900px) 35vw, 90vw' } = Astro.props as {memb
 {member.image ? member.framing === 'face' ? (
   <span class="portrait-frame">
     <span class="portrait-frame__crop">
-      <Image src={member.image} alt={member.name} width={640} height={640} widths={[320,640]} sizes={sizes} fit="cover" position={member.position || 'center'} quality={88} loading="lazy" />
+      <Image src={member.image} alt={member.name} width={640} widths={[320,640]} sizes={sizes} quality={88} loading="lazy" />
     </span>
   </span>
 ) : <Image src={member.image} alt={member.name} width={640} height={640} widths={[320,640]} sizes={sizes} fit="cover" position={member.position || 'center'} quality={88} loading="lazy" /> : <Photo id={member.photoId} alt={member.name} sizes={sizes} />}

@@ -1871,7 +1871,7 @@ main img, .hero-photo-wrap, .team-card__photo { border-radius: var(--radius); }
 .care-copy h2 { font-size: clamp(1.6rem, 2.6vw, 2.5rem); }
 .welcome-text { font-size: 1.125rem; }
 .service-link > h3 { font-size: clamp(1.5rem, 2.6vw, 2.5rem); }
-.team-meet { text-align: center; margin-top: 1.5rem; }
+.team-meet, .services-book { text-align: center; margin-top: 1.5rem; }
 .original-approach { padding-block: 1rem 2rem; max-width: var(--max-width); }
 .original-approach summary { font-family: var(--heading); font-size: clamp(1.8rem, 3.1vw, 3rem); letter-spacing: -.035em; }
 .find-us { padding-block: clamp(2rem, 4vw, 3.5rem); }
@@ -2053,12 +2053,13 @@ body[data-page="location"] .map-art { justify-self: start; }
 }
 .portrait-frame .portrait-frame__crop img {
   position: absolute;
-  width: 125%;
-  height: 125%;
+  width: 108%;
+  height: 108%;
   max-width: none;
-  left: -24.5%;
-  top: -24.5%;
+  left: -8%;
+  top: -4%;
   object-fit: cover;
+  object-position: center 30%;
   aspect-ratio: auto;
   border: 0;
   padding: 0;

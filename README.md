@@ -125,3 +125,5 @@ Boutons Google Maps, Apple Plans et Waze centrés sur téléphone. Portrait de N
 Contrôles ciblés : pages accueil, équipe, accès et contact FR/EN à 320, 390, 768, 900 et 1440 px ; cadrages relus, centrage par rangée des trois liens Maps, alignement carte/téléphone, centrage du titre et du bouton, justification du texte, message WhatsApp sans envoi. Build : 15 pages et 543 liens/ressources. Aperçus de partage vérifiés.
 
 Ajustement du portrait de Naomie après contrôle visuel : cadrage du visage légèrement rapproché et décalé dans le composant commun, sans modifier la photo originale. Accueil et équipe FR/EN vérifiés à 320, 390, 768 et 1440 px ; cadre et bordure conservés.
+
+Complément V6 transmis en capture : cadrage de Naomie élargi à partir du portrait original vertical, avec haut de tête entier et cou/haut du buste visibles sur accueil et équipe. Ajout du lien « Prendre rendez-vous » sous le paragraphe « Nous travaillons », avec la présentation centrée du lien d’équipe de l’accueil. Versions FR/EN et largeurs 320/390/768/1440 px contrôlées ; titre du préparateur centré et note WhatsApp justifiée revérifiés.
